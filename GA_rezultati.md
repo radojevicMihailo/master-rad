@@ -1,6 +1,6 @@
 # Rezultati genetskog algoritma za optimizaciju alokacije servisa
 
-## 1. Parametri genetskog algoritma
+## 1 Parametri genetskog algoritma
 
 | Parametar | Vrednost |
 |---|---|
@@ -15,7 +15,7 @@ Hromozom je matrica dimenzija 10x10 celih brojeva, gde `chromosome[i][j]` predst
 
 ---
 
-## 2. Implementacija osnovnih koraka
+## 2 Implementacija osnovnih koraka
 
 ### 2.1 Inicijalizacija populacije
 
@@ -57,7 +57,7 @@ Top 10 jedinki iz svake generacije direktno prelazi u sledeću bez izmena (eliti
 
 ---
 
-## 3. Rezultati genetskog algoritma
+## 3 Rezultati genetskog algoritma
 
 ### 3.1 Konvergencija kroz generacije (kumulativni maksimum)
 
@@ -133,9 +133,9 @@ Top 10 jedinki iz svake generacije direktno prelazi u sledeću bez izmena (eliti
 
 ---
 
-## 4. Rezultati NEOS servera (celobrojno linearno programiranje)
+## 4 Rezultati NEOS servera (celobrojno linearno programiranje)
 
-### 4.1 Informacije o rešavaču
+### 4.1 Informacije o solveru
 
 | Parametar | Vrednost |
 |---|---|
@@ -169,7 +169,7 @@ Top 10 jedinki iz svake generacije direktno prelazi u sledeću bez izmena (eliti
 
 ---
 
-## 5. Uporedna analiza
+## 5 Uporedna analiza
 
 ### 5.1 Poređenje rezultata
 
@@ -178,8 +178,6 @@ Top 10 jedinki iz svake generacije direktno prelazi u sledeću bez izmena (eliti
 | Maksimalna zarada | 89,474 din | 89,847 din |
 | Razlika od optimuma | 373 din (0.42%) | 0 din (0.00%) |
 | Vreme izvršavanja | ~60-120 sec | 0.19 sec |
-| Tip rešenja | Približno (heuristika) | Egzaktno (dokazano optimalno) |
-| Gap | N/A | 0.00% |
 
 ### 5.2 Analiza konvergencije kumulativnog maksimuma
 
