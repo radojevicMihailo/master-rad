@@ -1,0 +1,80 @@
+*************************************************************
+
+   NEOS Server Version 6.0
+   Job#     : 18690056
+   Password : GCaNLMgd
+   User     : 
+   Solver   : milp:Gurobi:LP
+   Start    : 2026-04-14 13:39:30
+   End      : 2026-04-14 13:39:34
+   Host     : prod-sub-1.neos-server.org
+
+   Disclaimer:
+
+   This information is provided without any express or
+   implied warranty. In particular, there is no warranty
+   of any kind concerning the fitness of this
+   information for any particular purpose.
+
+   Announcements:
+*************************************************************
+Set parameter TokenServer to value "opt-license.discovery.wisc.edu"
+Read LP format model from file model.lp
+Reading time = 0.00 seconds
+obj: 20 rows, 100 columns, 200 nonzeros
+
+
+Checking threads settings... (NEOS allows a maximum of 4 threads)
+Set parameter Threads to value 4
+Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Rocky Linux 8.10 (Green Obsidian)")
+
+CPU model: Intel(R) Xeon(R) Gold 6140 CPU @ 2.30GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 36 physical cores, 72 logical processors, using up to 4 threads
+
+Non-default parameters:
+Threads  4
+
+Optimize a model with 20 rows, 100 columns and 200 nonzeros (Max)
+Model fingerprint: 0x3fc6988b
+Model has 100 linear objective coefficients
+Variable types: 0 continuous, 100 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  Objective range  [6e+00, 4e+01]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [2e+02, 3e+03]
+
+Found heuristic solution: objective 45889.000000
+Presolve time: 0.00s
+Presolved: 20 rows, 100 columns, 200 nonzeros
+Variable types: 0 continuous, 100 integer (0 binary)
+
+Root relaxation: objective 8.986541e+04, 21 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 89865.4143    0    5 45889.0000 89865.4143  95.8%     -    0s
+H    0     0                    89797.000000 89865.4143  0.08%     -    0s
+H    0     0                    89827.000000 89865.4143  0.04%     -    0s
+H    0     0                    89830.000000 89865.4143  0.04%     -    0s
+H    0     0                    89833.000000 89865.4143  0.04%     -    0s
+     0     0 89851.0000    0    5 89833.0000 89851.0000  0.02%     -    0s
+H    0     0                    89834.000000 89851.0000  0.02%     -    0s
+H    0     0                    89836.000000 89851.0000  0.02%     -    0s
+H    0     0                    89839.000000 89851.0000  0.01%     -    0s
+     0     0 89849.4444    0    8 89839.0000 89849.4444  0.01%     -    0s
+H    0     0                    89844.000000 89849.4444  0.01%     -    0s
+
+Cutting planes:
+  Gomory: 4
+  MIR: 4
+  StrongCG: 1
+
+Explored 1 nodes (29 simplex iterations) in 0.01 seconds (0.00 work units)
+Thread count was 4 (of 72 available processors)
+
+Solution count 9: 89844 89839 89836 ... 45889
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 8.984400000000e+04, best bound 8.984900000000e+04, gap 0.0056%
