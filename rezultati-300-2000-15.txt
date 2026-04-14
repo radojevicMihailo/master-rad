@@ -1,0 +1,119 @@
+Gen    0 | Best: 1,989,692 | Avg: 1,283,306.5 | All-time best: 1,989,692
+Gen   25 | Best: 1,992,744 | Avg: 1,991,006.8 | All-time best: 1,992,744
+Gen   50 | Best: 1,994,341 | Avg: 1,992,610.7 | All-time best: 1,994,341
+Gen   75 | Best: 1,996,106 | Avg: 1,994,099.1 | All-time best: 1,996,106
+Gen  100 | Best: 1,997,118 | Avg: 1,995,892.8 | All-time best: 1,997,118
+Gen  125 | Best: 1,998,219 | Avg: 1,996,524.6 | All-time best: 1,998,219
+Gen  150 | Best: 1,999,381 | Avg: 1,997,948.3 | All-time best: 1,999,381
+Gen  175 | Best: 2,000,763 | Avg: 1,998,643.6 | All-time best: 2,000,763
+Gen  200 | Best: 2,001,583 | Avg: 1,999,972.9 | All-time best: 2,001,583
+Gen  225 | Best: 2,002,281 | Avg: 2,001,150.8 | All-time best: 2,002,281
+Gen  250 | Best: 2,002,643 | Avg: 2,000,946.2 | All-time best: 2,002,643
+Gen  275 | Best: 2,002,982 | Avg: 2,001,482.6 | All-time best: 2,002,982
+Gen  300 | Best: 2,003,386 | Avg: 2,001,225.0 | All-time best: 2,003,386
+Gen  325 | Best: 2,003,684 | Avg: 2,001,770.8 | All-time best: 2,003,684
+Gen  350 | Best: 2,004,033 | Avg: 2,002,481.5 | All-time best: 2,004,033
+Gen  375 | Best: 2,004,339 | Avg: 2,002,829.0 | All-time best: 2,004,339
+Gen  400 | Best: 2,004,536 | Avg: 2,002,678.6 | All-time best: 2,004,536
+Gen  425 | Best: 2,004,820 | Avg: 2,002,778.2 | All-time best: 2,004,820
+Gen  450 | Best: 2,005,068 | Avg: 2,003,910.0 | All-time best: 2,005,068
+Gen  475 | Best: 2,005,416 | Avg: 2,003,870.3 | All-time best: 2,005,416
+Gen  500 | Best: 2,005,663 | Avg: 2,004,317.1 | All-time best: 2,005,663
+Gen  525 | Best: 2,005,802 | Avg: 2,004,075.0 | All-time best: 2,005,802
+Gen  550 | Best: 2,006,028 | Avg: 2,003,735.4 | All-time best: 2,006,028
+Gen  575 | Best: 2,006,304 | Avg: 2,004,716.3 | All-time best: 2,006,304
+Gen  600 | Best: 2,006,430 | Avg: 2,004,890.9 | All-time best: 2,006,430
+Gen  625 | Best: 2,006,650 | Avg: 2,003,812.7 | All-time best: 2,006,650
+Gen  650 | Best: 2,006,818 | Avg: 2,005,068.6 | All-time best: 2,006,818
+Gen  675 | Best: 2,006,920 | Avg: 2,005,761.4 | All-time best: 2,006,920
+Gen  700 | Best: 2,006,968 | Avg: 2,005,613.4 | All-time best: 2,006,968
+Gen  725 | Best: 2,007,031 | Avg: 2,005,756.3 | All-time best: 2,007,031
+Gen  750 | Best: 2,007,104 | Avg: 2,005,505.9 | All-time best: 2,007,104
+Gen  775 | Best: 2,007,140 | Avg: 2,005,755.6 | All-time best: 2,007,140
+Gen  800 | Best: 2,007,179 | Avg: 2,005,656.6 | All-time best: 2,007,179
+Gen  825 | Best: 2,007,209 | Avg: 2,005,641.4 | All-time best: 2,007,209
+Gen  850 | Best: 2,007,251 | Avg: 2,006,244.2 | All-time best: 2,007,251
+Gen  875 | Best: 2,007,290 | Avg: 2,005,750.7 | All-time best: 2,007,290
+Gen  900 | Best: 2,007,339 | Avg: 2,005,928.8 | All-time best: 2,007,339
+Gen  925 | Best: 2,007,422 | Avg: 2,006,396.1 | All-time best: 2,007,422
+Gen  950 | Best: 2,007,464 | Avg: 2,006,132.2 | All-time best: 2,007,464
+Gen  975 | Best: 2,007,514 | Avg: 2,006,153.8 | All-time best: 2,007,514
+Gen 1000 | Best: 2,007,565 | Avg: 2,006,176.2 | All-time best: 2,007,565
+Gen 1025 | Best: 2,007,654 | Avg: 2,006,434.1 | All-time best: 2,007,654
+Gen 1050 | Best: 2,007,714 | Avg: 2,006,069.3 | All-time best: 2,007,714
+Gen 1075 | Best: 2,007,740 | Avg: 2,006,315.8 | All-time best: 2,007,740
+Gen 1100 | Best: 2,007,740 | Avg: 2,005,725.0 | All-time best: 2,007,740
+Gen 1125 | Best: 2,007,754 | Avg: 2,005,915.8 | All-time best: 2,007,754
+Gen 1150 | Best: 2,008,014 | Avg: 2,006,841.7 | All-time best: 2,008,014
+Gen 1175 | Best: 2,008,026 | Avg: 2,006,638.1 | All-time best: 2,008,026
+Gen 1200 | Best: 2,008,047 | Avg: 2,006,221.6 | All-time best: 2,008,047
+Gen 1225 | Best: 2,008,067 | Avg: 2,006,000.4 | All-time best: 2,008,067
+Gen 1250 | Best: 2,008,081 | Avg: 2,006,767.8 | All-time best: 2,008,081
+Gen 1275 | Best: 2,008,100 | Avg: 2,006,464.1 | All-time best: 2,008,100
+Gen 1300 | Best: 2,008,121 | Avg: 2,006,926.2 | All-time best: 2,008,121
+Gen 1325 | Best: 2,008,127 | Avg: 2,006,987.7 | All-time best: 2,008,127
+Gen 1350 | Best: 2,008,156 | Avg: 2,006,619.8 | All-time best: 2,008,156
+Gen 1375 | Best: 2,008,204 | Avg: 2,006,478.8 | All-time best: 2,008,204
+Gen 1400 | Best: 2,008,270 | Avg: 2,006,720.6 | All-time best: 2,008,270
+Gen 1425 | Best: 2,008,297 | Avg: 2,006,841.2 | All-time best: 2,008,297
+Gen 1450 | Best: 2,008,382 | Avg: 2,006,758.9 | All-time best: 2,008,382
+Gen 1475 | Best: 2,008,443 | Avg: 2,007,412.6 | All-time best: 2,008,443
+Gen 1500 | Best: 2,008,471 | Avg: 2,007,482.1 | All-time best: 2,008,471
+Gen 1525 | Best: 2,008,481 | Avg: 2,007,568.8 | All-time best: 2,008,481
+Gen 1550 | Best: 2,008,501 | Avg: 2,007,236.2 | All-time best: 2,008,501
+Gen 1575 | Best: 2,008,540 | Avg: 2,007,068.9 | All-time best: 2,008,540
+Gen 1600 | Best: 2,008,555 | Avg: 2,006,887.0 | All-time best: 2,008,555
+Gen 1625 | Best: 2,008,606 | Avg: 2,007,267.5 | All-time best: 2,008,606
+Gen 1650 | Best: 2,008,634 | Avg: 2,007,800.9 | All-time best: 2,008,634
+Gen 1675 | Best: 2,008,640 | Avg: 2,006,895.7 | All-time best: 2,008,640
+Gen 1700 | Best: 2,008,717 | Avg: 2,007,044.7 | All-time best: 2,008,717
+Gen 1725 | Best: 2,008,736 | Avg: 2,007,280.5 | All-time best: 2,008,736
+Gen 1750 | Best: 2,008,769 | Avg: 2,007,492.9 | All-time best: 2,008,769
+Gen 1775 | Best: 2,008,814 | Avg: 2,007,323.9 | All-time best: 2,008,814
+Gen 1800 | Best: 2,008,867 | Avg: 2,007,305.9 | All-time best: 2,008,867
+Gen 1825 | Best: 2,008,886 | Avg: 2,007,060.2 | All-time best: 2,008,886
+Gen 1850 | Best: 2,008,943 | Avg: 2,006,292.1 | All-time best: 2,008,943
+Gen 1875 | Best: 2,008,992 | Avg: 2,007,245.0 | All-time best: 2,008,992
+Gen 1900 | Best: 2,009,036 | Avg: 2,007,415.2 | All-time best: 2,009,036
+Gen 1925 | Best: 2,009,089 | Avg: 2,007,869.9 | All-time best: 2,009,089
+Gen 1950 | Best: 2,009,130 | Avg: 2,007,768.8 | All-time best: 2,009,130
+Gen 1975 | Best: 2,009,138 | Avg: 2,008,034.8 | All-time best: 2,009,138
+
+================================================================================
+  MAKSIMALNA ZARADA: 2,009,156 dinara
+================================================================================
+
+── Iskoriscenje racunara ────────────────────────────────────────────────
+
+  Prosecna iskoriscenje: 99.98%
+
+── Iskoriscenje traznje servisa ─────────────────────────────────────────
+  Servisi sa 100% iskoriscenjem: 95/100
+  Nekorisceni servisi: 0/100
+
+  Delimicno korisceni servisi:
+    S 13:   499/  500  ( 99.8%)
+    S 33:   486/  500  ( 97.2%)
+    S 53:   496/  500  ( 99.2%)
+    S 73:   457/  500  ( 91.4%)
+    S 93:   491/  500  ( 98.2%)
+
+── Top 15 najisplativijih dodela ────────────────────────────────────────
+  Servis     Racunar      Kolicina   Cena/kom     Doprinos
+  ---------- ---------- ---------- ---------- ------------
+  S30        C12               500         49       24,500
+  S20        C22               460         49       22,540
+  S19        C3                489         46       22,494
+  S12        C30               442         49       21,658
+  S10        C32               441         49       21,609
+  S3         C19               458         46       21,068
+  S18        C24               496         41       20,336
+  S28        C14               481         41       19,721
+  S32        C10               396         49       19,404
+  S40        C2                395         49       19,355
+  S36        C26               425         45       19,125
+  S6         C16               417         45       18,765
+  S22        C20               380         49       18,620
+  S34        C8                453         41       18,573
+  S16        C6                401         45       18,045
+================================================================================
