@@ -1,3 +1,11 @@
+GA Hiperparametri:
+  Velicina populacije: 300
+  Broj generacija: 2000
+  Velicina turnira: 5
+  Verovatnoca ukrstanja: 0.85
+  Verovatnoca mutacije: 0.15
+  Elitizam: 15 najboljih zadrzavano
+
 Gen    0 | Best: 1,989,692 | Avg: 1,283,306.5 | All-time best: 1,989,692
 Gen   25 | Best: 1,992,744 | Avg: 1,991,006.8 | All-time best: 1,992,744
 Gen   50 | Best: 1,994,341 | Avg: 1,992,610.7 | All-time best: 1,994,341

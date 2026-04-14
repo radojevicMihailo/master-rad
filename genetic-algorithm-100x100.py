@@ -53,12 +53,12 @@ CROSSOVER_RATE = 0.85
 MUTATION_RATE = 0.15
 ELITE_COUNT = 15
 
-print("\nGA Hyperparameters:")
+print("\nGA Hiperparametri:")
 print(f"  Velicina populacije: {POPULATION_SIZE}")
-print(f"  Generacije: {GENERATIONS}")
-print(f"  Tournament size: {TOURNAMENT_SIZE}")
-print(f"  Crossover rate: {CROSSOVER_RATE:.2f}")
-print(f"  Mutation rate: {MUTATION_RATE:.2f}")
+print(f"  Broj generacija: {GENERATIONS}")
+print(f"  Velicina turnira: {TOURNAMENT_SIZE}")
+print(f"  Verovatnoca ukrstanja: {CROSSOVER_RATE:.2f}")
+print(f"  Verovatnoca mutacije: {MUTATION_RATE:.2f}")
 print(f"  Elitizam: {ELITE_COUNT} najboljih zadrzavano")
 
 # ── Precomputed Helpers ───────────────────────────────────────────────────────
