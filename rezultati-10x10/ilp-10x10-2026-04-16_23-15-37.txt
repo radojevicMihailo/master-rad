@@ -1,0 +1,12 @@
+ILP Solver Rezultati
+================================================================================
+  Dimenzije: 10 servisa x 10 racunara
+  Maksimalno vreme: 2880
+  Vremenski limit: 300s
+  Status: Optimal
+  Vreme resavanja: 0.09s
+
+  OPTIMALNA ZARADA: 89,847 dinara
+  Prosecna iskoriscenje: 99.86%
+  Servisi sa 100% iskoriscenjem: 4/10
+================================================================================

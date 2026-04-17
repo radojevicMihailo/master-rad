@@ -1,0 +1,10 @@
+Servis_1	1000
+Servis_2	600
+Servis_3	500
+Servis_4	800
+Servis_5	400
+Servis_6	1200
+Servis_7	300
+Servis_8	700
+Servis_9	200
+Servis_10	450

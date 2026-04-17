@@ -1,117 +1,185 @@
+import csv
 import random
+import os
+import statistics
+from datetime import datetime
 
-# ── Constants ─────────────────────────────────────────────────────────────────
+import numpy as np
 
-SERVICE_COUNT = 10
-COMPUTER_COUNT = 10
-MAX_TIME = 2880  # 48 hours in minutes
+# ── Load Data from Files ──────────────────────────────────────────────────────
 
-# Time matrix: TIME[i][j] = minutes to run service i on computer j
-TIME = [
-    [ 5,  7,  4, 10,  6,  8,  5,  9,  7,  6],  # S1
-    [ 6, 12,  8, 15, 10,  7,  9, 11,  8, 14],  # S2
-    [13, 14,  9, 17, 12, 15, 10, 11, 13, 16],  # S3
-    [ 8,  5,  7,  6,  9, 10,  4, 12, 15,  7],  # S4
-    [10, 10, 10, 10, 10, 10, 10, 10, 10, 10],  # S5
-    [ 5, 15,  5, 15,  5, 15,  5, 15,  5, 15],  # S6
-    [12,  8, 14,  9, 11,  7, 13, 10,  6,  8],  # S7
-    [ 7,  7,  7,  7,  7,  7,  7,  7,  7,  7],  # S8
-    [15, 12, 10,  8, 14,  9, 11, 13,  7, 16],  # S9
-    [ 9, 11, 13, 15,  7,  8, 10, 12, 14,  6],  # S10
-]
+PROBLEM_SIZE = "10x10"
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"podaci-{PROBLEM_SIZE}")
 
-# Profit matrix: PROFIT[i][j] = dinars per execution of service i on computer j
-PROFIT = [
-    [10,  8,  6,  9,  7, 11, 10,  8,  9,  7],  # S1
-    [18, 20, 15, 17, 19, 16, 18, 20, 15, 17],  # S2
-    [15, 16, 13, 17, 14, 18, 15, 16, 13, 17],  # S3
-    [12, 14, 11, 13, 15, 12, 14, 11, 13, 15],  # S4
-    [25, 22, 20, 24, 21, 23, 25, 22, 20, 24],  # S5
-    [10, 10, 10, 10, 10, 10, 10, 10, 10, 10],  # S6
-    [30, 28, 32, 29, 31, 27, 30, 28, 32, 29],  # S7
-    [14, 15, 16, 17, 18, 19, 20, 21, 22, 23],  # S8
-    [40, 35, 38, 42, 37, 39, 40, 35, 38, 42],  # S9
-    [22, 24, 26, 28, 20, 21, 23, 25, 27, 29],  # S10
-]
 
-# Maximum demand per service over 48 hours
-DEMAND = [1000, 600, 500, 800, 400, 1200, 300, 700, 200, 450]
+def load_matrix_csv(filepath):
+    """Load matrix from a CSV file (skip header row and first column)."""
+    matrix = []
+    with open(filepath, "r") as file:
+        reader = csv.reader(file)
+        next(reader)  # skip header
+        for row in reader:
+            matrix.append([int(value) for value in row[1:]])
+    return matrix
 
-# GA hyperparameters
-POPULATION_SIZE = 200
-GENERATIONS = 1000
+
+def load_demand_csv(filepath):
+    """Load demand values from a CSV file (Servis_N,value per line, no header)."""
+    demand = []
+    with open(filepath, "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if len(row) >= 2:
+                try:
+                    demand.append(int(row[1]))
+                except ValueError:
+                    continue
+    return demand
+
+
+def load_matrix_tsv(filepath):
+    """Load matrix from a tab-separated file (skip header row and first column)."""
+    matrix = []
+    with open(filepath, "r") as file:
+        lines = file.readlines()
+        for line in lines[1:]:  # skip header
+            parts = line.strip().split("\t")
+            if len(parts) > 1:
+                row = [int(value) for value in parts[1:]]
+                matrix.append(row)
+    return matrix
+
+
+def load_demand_tsv(filepath):
+    """Load demand values from a tab-separated file (skip header, take second column)."""
+    demand = []
+    with open(filepath, "r") as file:
+        for line in file.readlines():
+            parts = line.strip().split("\t")
+            if len(parts) >= 2:
+                try:
+                    demand.append(int(parts[1]))
+                except ValueError:
+                    continue
+    return demand
+
+
+def load_data(problem_size, data_directory):
+    """Load TIME, PROFIT, DEMAND matrices based on problem size and file format."""
+    size_number = problem_size.split("x")[0]
+
+    csv_time = os.path.join(data_directory, f"vremena_izvrsavanja_{size_number}.csv")
+    csv_profit = os.path.join(data_directory, f"zarada_po_servisu_{size_number}.csv")
+    csv_demand = os.path.join(data_directory, f"zahtevi_za_servisima_{size_number}.csv")
+
+    if os.path.exists(csv_time):
+        time_matrix = load_matrix_csv(csv_time)
+        profit_matrix = load_matrix_csv(csv_profit)
+        demand_vector = load_demand_csv(csv_demand)
+    else:
+        time_matrix = load_matrix_tsv(os.path.join(data_directory, "vremena_izvrsavanja.txt"))
+        profit_matrix = load_matrix_tsv(os.path.join(data_directory, "zarada_po_servisu.txt"))
+        demand_vector = load_demand_tsv(os.path.join(data_directory, "zahtevi_za_servisima.txt"))
+
+    return time_matrix, profit_matrix, demand_vector
+
+
+print(f"Ucitavanje podataka za {PROBLEM_SIZE}...")
+_time_list, _profit_list, _demand_list = load_data(PROBLEM_SIZE, DATA_DIR)
+
+TIME = np.array(_time_list, dtype=np.int32)
+PROFIT = np.array(_profit_list, dtype=np.int32)
+DEMAND = np.array(_demand_list, dtype=np.int32)
+
+NUM_SERVICES, NUM_COMPUTERS = TIME.shape
+MAX_TIME = 2880
+
+print(f"Dimenzije problema: {NUM_SERVICES} servisa x {NUM_COMPUTERS} racunara")
+print(f"Traznja po servisu: {DEMAND[0]} (uniformna)")
+
+# ── GA Hyperparameters ────────────────────────────────
+
+POPULATION_SIZE = 1000
+GENERATIONS = 500
 TOURNAMENT_SIZE = 5
 CROSSOVER_RATE = 0.85
 MUTATION_RATE = 0.15
 ELITE_COUNT = 10
 
-# Precomputed helpers
-PROFIT_PER_MIN = [
-    [PROFIT[i][j] / TIME[i][j] for j in range(COMPUTER_COUNT)]
-    for i in range(SERVICE_COUNT)
+print("\nGA Hiperparametri:")
+print(f"  Velicina populacije: {POPULATION_SIZE}")
+print(f"  Broj generacija: {GENERATIONS}")
+print(f"  Velicina turnira: {TOURNAMENT_SIZE}")
+print(f"  Verovatnoca ukrstanja: {CROSSOVER_RATE:.2f}")
+print(f"  Verovatnoca mutacije: {MUTATION_RATE:.2f}")
+print(f"  Elitizam: {ELITE_COUNT} najboljih zadrzavano")
+
+# ── Precomputed Helpers ───────────────────────────────────────────────────────
+
+PROFIT_PER_MINUTE = PROFIT.astype(np.float64) / TIME.astype(np.float64)
+
+MAX_UNITS = (MAX_TIME // TIME).astype(np.int32)
+
+# Top profit/minute pairs for greedy init (precomputed once)
+_flat_indices = np.argsort(PROFIT_PER_MINUTE.ravel())[::-1]
+SORTED_PAIRS = list(zip(*np.unravel_index(_flat_indices, PROFIT_PER_MINUTE.shape)))
+
+# For each computer, services sorted by profit/minute (worst first) — used in repair
+SERVICES_BY_RATIO_PER_COMPUTER = [
+    np.argsort(PROFIT_PER_MINUTE[:, computer]).tolist()
+    for computer in range(NUM_COMPUTERS)
 ]
 
-MAX_UNITS = [
-    [MAX_TIME // TIME[i][j] for j in range(COMPUTER_COUNT)]
-    for i in range(SERVICE_COUNT)
+# For each computer, services sorted by profit/minute (best first) — used in fill
+SERVICES_BEST_FIRST_PER_COMPUTER = [
+    np.argsort(PROFIT_PER_MINUTE[:, computer])[::-1].tolist()
+    for computer in range(NUM_COMPUTERS)
 ]
-
-# All (i, j) pairs sorted by profit-per-minute descending (used in greedy init)
-SORTED_PAIRS = sorted(
-    [(i, j) for i in range(SERVICE_COUNT) for j in range(COMPUTER_COUNT)],
-    key=lambda p: PROFIT_PER_MIN[p[0]][p[1]],
-    reverse=True,
-)
 
 
 # ── Repair ────────────────────────────────────────────────────────────────────
 
 def repair(chromosome):
-    """Ensure chromosome satisfies all time and demand constraints (in-place + return)."""
+    """Ensure chromosome satisfies all time and demand constraints."""
     # 1. Clip negatives
-    for service in range(SERVICE_COUNT):
-        for computer in range(COMPUTER_COUNT):
-            if chromosome[service][computer] < 0:
-                chromosome[service][computer] = 0
+    np.clip(chromosome, 0, None, out=chromosome)
 
     # 2. Enforce demand constraints (row-wise)
-    for service in range(SERVICE_COUNT):
-        total = sum(chromosome[service])
-        if total > DEMAND[service]:
-            for computer in range(COMPUTER_COUNT):
-                chromosome[service][computer] = int(chromosome[service][computer] * DEMAND[service] / total)
+    row_totals = chromosome.sum(axis=1)
+    over_demand = row_totals > DEMAND
+    if over_demand.any():
+        ratios = DEMAND[over_demand].astype(np.float64) / row_totals[over_demand]
+        chromosome[over_demand] = (chromosome[over_demand] * ratios[:, np.newaxis]).astype(np.int32)
 
     # 3. Enforce time constraints (column-wise)
-    for computer in range(COMPUTER_COUNT):
-        used = sum(TIME[service][computer] * chromosome[service][computer] for service in range(SERVICE_COUNT))
-        while used > MAX_TIME:
-            worst_service = -1
-            worst_ratio = float('inf')
-            for service in range(SERVICE_COUNT):
-                if chromosome[service][computer] > 0 and PROFIT_PER_MIN[service][computer] < worst_ratio:
-                    worst_ratio = PROFIT_PER_MIN[service][computer]
-                    worst_service = service
-            if worst_service == -1:
-                break
-            chromosome[worst_service][computer] -= 1
-            used -= TIME[worst_service][computer]
+    for computer in range(NUM_COMPUTERS):
+        used = int(np.sum(TIME[:, computer] * chromosome[:, computer]))
+        if used > MAX_TIME:
+            for service in SERVICES_BY_RATIO_PER_COMPUTER[computer]:
+                if used <= MAX_TIME:
+                    break
+                if chromosome[service, computer] > 0:
+                    excess = used - MAX_TIME
+                    units_to_remove = min(int(chromosome[service, computer]), (excess + int(TIME[service, computer]) - 1) // int(TIME[service, computer]))
+                    chromosome[service, computer] -= units_to_remove
+                    used -= units_to_remove * int(TIME[service, computer])
 
-    # 4. Fill leftover time with the best profit/min services that have remaining demand
-    for computer in range(COMPUTER_COUNT):
-        used = sum(TIME[service][computer] * chromosome[service][computer] for service in range(SERVICE_COUNT))
+    # 4. Fill leftover time with best profit/minute services
+    for computer in range(NUM_COMPUTERS):
+        used = int(np.sum(TIME[:, computer] * chromosome[:, computer]))
         remaining = MAX_TIME - used
-        # Services sorted by profit/min on this computer, best first
-        service_order = sorted(range(SERVICE_COUNT), key=lambda service: PROFIT_PER_MIN[service][computer], reverse=True)
-        for service in service_order:
-            if remaining < TIME[service][computer]:
+        for service in SERVICES_BEST_FIRST_PER_COMPUTER[computer]:
+            if remaining < TIME[service, computer]:
                 continue
-            demand_left = DEMAND[service] - sum(chromosome[service])
+            demand_left = int(DEMAND[service]) - int(chromosome[service].sum())
             if demand_left <= 0:
                 continue
-            add = min(demand_left, remaining // TIME[service][computer])
+            add = min(demand_left, remaining // int(TIME[service, computer]))
             if add > 0:
-                chromosome[service][computer] += add
-                remaining -= add * TIME[service][computer]
+                chromosome[service, computer] += add
+                remaining -= add * int(TIME[service, computer])
+            if remaining < 5:
+                break
 
     return chromosome
 
@@ -119,47 +187,42 @@ def repair(chromosome):
 # ── Fitness ───────────────────────────────────────────────────────────────────
 
 def fitness(chromosome):
-    return sum(
-        PROFIT[service][computer] * chromosome[service][computer]
-        for service in range(SERVICE_COUNT)
-        for computer in range(COMPUTER_COUNT)
-    )
+    return int(np.sum(PROFIT * chromosome))
 
 
 # ── Initialization ────────────────────────────────────────────────────────────
 
 def init_greedy():
-    chromosome = [[0] * COMPUTER_COUNT for _ in range(SERVICE_COUNT)]
-    remaining_demand = DEMAND[:]
-    remaining_time = [MAX_TIME] * COMPUTER_COUNT
+    chromosome = np.zeros((NUM_SERVICES, NUM_COMPUTERS), dtype=np.int32)
+    remaining_demand = DEMAND.copy()
+    remaining_time = np.full(NUM_COMPUTERS, MAX_TIME, dtype=np.int32)
 
     for service, computer in SORTED_PAIRS:
-        max_by_time = remaining_time[computer] // TIME[service][computer]
+        if remaining_demand[service] <= 0 or remaining_time[computer] < TIME[service, computer]:
+            continue
+        max_by_time = remaining_time[computer] // TIME[service, computer]
         max_by_demand = remaining_demand[service]
-        value = min(max_by_time, max_by_demand)
+        value = min(int(max_by_time), int(max_by_demand))
         if value > 0:
             value = max(0, value - random.randint(0, value // 3 + 1))
-            chromosome[service][computer] = value
+            chromosome[service, computer] = value
             remaining_demand[service] -= value
-            remaining_time[computer] -= value * TIME[service][computer]
+            remaining_time[computer] -= value * TIME[service, computer]
 
     return repair(chromosome)
 
 
 def init_random():
-    chromosome = [
-        [random.randint(0, min(DEMAND[service], MAX_UNITS[service][computer]))
-         for computer in range(COMPUTER_COUNT)]
-        for service in range(SERVICE_COUNT)
-    ]
+    upper_bounds = np.minimum(DEMAND[:, np.newaxis], MAX_UNITS)
+    chromosome = np.zeros((NUM_SERVICES, NUM_COMPUTERS), dtype=np.int32)
+    for service in range(NUM_SERVICES):
+        for computer in range(NUM_COMPUTERS):
+            chromosome[service, computer] = random.randint(0, int(upper_bounds[service, computer]))
     return repair(chromosome)
 
 
 def init_population(size):
-    greedy_count = int(0.3 * size)
-    population = [init_greedy() for _ in range(greedy_count)]
-    population += [init_random() for _ in range(size - greedy_count)]
-    return population
+    return [init_random() for _ in range(size)]
 
 
 # ── Selection ─────────────────────────────────────────────────────────────────
@@ -167,24 +230,18 @@ def init_population(size):
 def tournament_select(population, fitnesses, tournament_size=TOURNAMENT_SIZE):
     indices = random.sample(range(len(population)), tournament_size)
     best_index = max(indices, key=lambda idx: fitnesses[idx])
-    return [row[:] for row in population[best_index]]
+    return population[best_index].copy()
 
 
 # ── Crossover ─────────────────────────────────────────────────────────────────
 
 def uniform_crossover(parent1, parent2):
     if random.random() > CROSSOVER_RATE:
-        return [row[:] for row in parent1], [row[:] for row in parent2]
+        return parent1.copy(), parent2.copy()
 
-    child1 = [[0] * COMPUTER_COUNT for _ in range(SERVICE_COUNT)]
-    child2 = [[0] * COMPUTER_COUNT for _ in range(SERVICE_COUNT)]
-
-    for service in range(SERVICE_COUNT):
-        for computer in range(COMPUTER_COUNT):
-            if random.random() < 0.5:
-                child1[service][computer], child2[service][computer] = parent1[service][computer], parent2[service][computer]
-            else:
-                child1[service][computer], child2[service][computer] = parent2[service][computer], parent1[service][computer]
+    mask = np.random.randint(0, 2, size=(NUM_SERVICES, NUM_COMPUTERS), dtype=np.bool_)
+    child1 = np.where(mask, parent1, parent2)
+    child2 = np.where(mask, parent2, parent1)
 
     return repair(child1), repair(child2)
 
@@ -193,28 +250,28 @@ def uniform_crossover(parent1, parent2):
 
 def mutate(chromosome):
     # Operator 1: Point mutation
-    per_cell_probability = MUTATION_RATE / COMPUTER_COUNT
-    for service in range(SERVICE_COUNT):
-        for computer in range(COMPUTER_COUNT):
-            if random.random() < per_cell_probability:
-                delta = max(1, chromosome[service][computer] // 3)
-                chromosome[service][computer] += random.randint(-delta, delta)
-                chromosome[service][computer] = max(0, min(chromosome[service][computer], MAX_UNITS[service][computer]))
+    per_cell_probability = MUTATION_RATE / NUM_COMPUTERS
+    mutation_mask = np.random.random((NUM_SERVICES, NUM_COMPUTERS)) < per_cell_probability
+    if mutation_mask.any():
+        deltas_max = np.maximum(1, chromosome // 3)
+        # Generate random deltas in range [-delta_max, +delta_max] for each cell
+        random_deltas = (np.random.random(chromosome.shape) * (2 * deltas_max + 1) - deltas_max).astype(np.int32)
+        chromosome[mutation_mask] += random_deltas[mutation_mask]
+        np.clip(chromosome, 0, MAX_UNITS, out=chromosome)
 
-    # Operator 2: Column swap (5% chance)
+    # Operator 2: Column swap (5%)
     if random.random() < 0.05:
-        computer1, computer2 = random.sample(range(COMPUTER_COUNT), 2)
-        for service in range(SERVICE_COUNT):
-            chromosome[service][computer1], chromosome[service][computer2] = chromosome[service][computer2], chromosome[service][computer1]
+        computer1, computer2 = random.sample(range(NUM_COMPUTERS), 2)
+        chromosome[:, [computer1, computer2]] = chromosome[:, [computer2, computer1]]
 
-    # Operator 3: Row redistribution (5% chance)
+    # Operator 3: Row redistribution (5%)
     if random.random() < 0.05:
-        service = random.randint(0, SERVICE_COUNT - 1)
-        total = sum(chromosome[service])
+        service = random.randint(0, NUM_SERVICES - 1)
+        total = int(chromosome[service].sum())
         if total > 0:
-            weights = [PROFIT_PER_MIN[service][computer] for computer in range(COMPUTER_COUNT)]
-            weights_sum = sum(weights)
-            chromosome[service] = [int(total * weight / weights_sum) for weight in weights]
+            weights = PROFIT_PER_MINUTE[service]
+            weights_sum = weights.sum()
+            chromosome[service] = (total * weights / weights_sum).astype(np.int32)
 
     return repair(chromosome)
 
@@ -222,11 +279,13 @@ def mutate(chromosome):
 # ── Main GA Loop ──────────────────────────────────────────────────────────────
 
 def run_ga():
+    print("\nInicijalizacija populacije...")
     population = init_population(POPULATION_SIZE)
     best_ever = None
     best_fitness_ever = 0
     stagnation_counter = 0
 
+    print("Pokretanje evolucije...\n")
     for generation in range(GENERATIONS):
         fitnesses = [fitness(chromosome) for chromosome in population]
 
@@ -235,12 +294,12 @@ def run_ga():
 
         if generation_best_fitness > best_fitness_ever:
             best_fitness_ever = generation_best_fitness
-            best_ever = [row[:] for row in population[generation_best_index]]
+            best_ever = population[generation_best_index].copy()
             stagnation_counter = 0
         else:
             stagnation_counter += 1
 
-        if generation % 50 == 0:
+        if generation % 25 == 0:
             average_fitness = sum(fitnesses) / len(fitnesses)
             print(f"Gen {generation:4d} | Best: {generation_best_fitness:,} | Avg: {average_fitness:,.1f} | "
                   f"All-time best: {best_fitness_ever:,}")
@@ -254,7 +313,7 @@ def run_ga():
 
         # Elitism: keep top ELITE_COUNT
         elite_indices = sorted(range(len(fitnesses)), key=lambda idx: fitnesses[idx], reverse=True)[:ELITE_COUNT]
-        new_population = [[row[:] for row in population[idx]] for idx in elite_indices]
+        new_population = [population[idx].copy() for idx in elite_indices]
 
         # Fill the rest via selection, crossover, mutation
         while len(new_population) < POPULATION_SIZE:
@@ -275,55 +334,137 @@ def run_ga():
 # ── Output ────────────────────────────────────────────────────────────────────
 
 def print_solution(chromosome, total_profit):
-    print("\n" + "=" * 72)
-    print("  OPTIMALNA ALOKACIJA SERVISA  (x[i][j] = broj izvrsavanja)")
-    print("=" * 72)
+    print("\n" + "=" * 80)
+    print(f"  MAKSIMALNA ZARADA: {total_profit:,} dinara")
+    print("=" * 80)
 
-    header = "         " + "".join(f"  C{computer+1:2d}" for computer in range(COMPUTER_COUNT))
-    print(header)
-    print("-" * 72)
-    for service in range(SERVICE_COUNT):
-        row = f"  S{service+1:2d}   " + "".join(f"{chromosome[service][computer]:5d}" for computer in range(COMPUTER_COUNT))
-        print(row)
-
-    print("=" * 72)
-    print(f"\n  MAKSIMALNA ZARADA: {total_profit:,} dinara\n")
-
-    print("── Iskoriscenje racunara ──────────────────────────────────────────────")
-    for computer in range(COMPUTER_COUNT):
-        used = sum(TIME[service][computer] * chromosome[service][computer] for service in range(SERVICE_COUNT))
+    # Computer utilization
+    print("\n── Iskoriscenje racunara ────────────────────────────────────────────────")
+    time_per_computer = np.sum(TIME * chromosome, axis=0)
+    total_used = int(time_per_computer.sum())
+    total_capacity = NUM_COMPUTERS * MAX_TIME
+    for computer in range(NUM_COMPUTERS):
+        used = int(time_per_computer[computer])
         percent = 100 * used / MAX_TIME
-        bar = "#" * int(percent / 5)
-        print(f"  C{computer+1:2d}: {used:5d}/{MAX_TIME} min  ({percent:5.1f}%)  {bar}")
+        if percent < 99.0:
+            print(f"  C{computer+1:3d}: {used:5d}/{MAX_TIME} min  ({percent:5.1f}%)")
+    avg_utilization = 100 * total_used / total_capacity
+    print(f"\n  Prosecna iskoriscenje: {avg_utilization:.2f}%")
 
-    print()
-    print("── Iskoriscenje potraznje servisa ─────────────────────────────────────")
-    for service in range(SERVICE_COUNT):
-        allocated = sum(chromosome[service])
-        percent = 100 * allocated / DEMAND[service]
-        bar = "#" * int(percent / 5)
-        print(f"  S{service+1:2d}: {allocated:5d}/{DEMAND[service]:5d}  ({percent:5.1f}%)  {bar}")
+    # Service demand utilization
+    print("\n── Iskoriscenje traznje servisa ─────────────────────────────────────────")
+    allocated_per_service = chromosome.sum(axis=1)
+    services_at_max = int(np.sum(allocated_per_service == DEMAND))
+    services_unused = int(np.sum(allocated_per_service == 0))
+    print(f"  Servisi sa 100% iskoriscenjem: {services_at_max}/{NUM_SERVICES}")
+    print(f"  Nekorisceni servisi: {services_unused}/{NUM_SERVICES}")
 
-    print()
-    print("── Top 10 najisplativijih dodela ──────────────────────────────────────")
+    # Partially used services
+    print("\n  Delimicno korisceni servisi:")
+    for service in range(NUM_SERVICES):
+        allocated = int(allocated_per_service[service])
+        if 0 < allocated < DEMAND[service]:
+            percent = 100 * allocated / DEMAND[service]
+            print(f"    S{service+1:3d}: {allocated:5d}/{DEMAND[service]:5d}  ({percent:5.1f}%)")
+
+    # Top 15 most profitable assignments
+    print("\n── Top 15 najisplativijih dodela ────────────────────────────────────────")
+    contributions = PROFIT * chromosome
+    nonzero = np.argwhere(chromosome > 0)
     assignments = [
-        (PROFIT[service][computer] * chromosome[service][computer], service, computer, chromosome[service][computer], PROFIT[service][computer])
-        for service in range(SERVICE_COUNT)
-        for computer in range(COMPUTER_COUNT)
-        if chromosome[service][computer] > 0
+        (int(contributions[service, computer]), service, computer, int(chromosome[service, computer]), int(PROFIT[service, computer]))
+        for service, computer in nonzero
     ]
     assignments.sort(reverse=True)
-    print(f"  {'Servis':<8} {'Racunar':<10} {'Kolicina':>10} {'Cena/kom':>10} {'Doprinos':>12}")
-    print(f"  {'-'*8} {'-'*10} {'-'*10} {'-'*10} {'-'*12}")
-    for contribution, service, computer, quantity, price in assignments[:10]:
-        print(f"  S{service+1:<7} C{computer+1:<9} {quantity:>10,} {price:>10} {contribution:>12,}")
+    print(f"  {'Servis':<10} {'Racunar':<10} {'Kolicina':>10} {'Cena/kom':>10} {'Doprinos':>12}")
+    print(f"  {'-'*10} {'-'*10} {'-'*10} {'-'*10} {'-'*12}")
+    for contribution, service, computer, quantity, price in assignments[:15]:
+        print(f"  S{service+1:<9} C{computer+1:<9} {quantity:>10,} {price:>10} {contribution:>12,}")
 
-    print("=" * 72)
+    print("=" * 80)
+
+
+# ── Multi-Run with Median ────────────────────────────────────────────────────
+
+NUM_RUNS = 10
+
+RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"rezultati-{PROBLEM_SIZE}")
+os.makedirs(RESULTS_DIR, exist_ok=True)
+
+
+def save_results(run_profits, best_overall_profit, best_overall_chromosome):
+    """Save all run results and median to file."""
+    median_profit = statistics.median(run_profits)
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    filename = f"ga-{POPULATION_SIZE}-{GENERATIONS}-{ELITE_COUNT}-{NUM_RUNS}runs-{timestamp}.txt"
+    filepath = os.path.join(RESULTS_DIR, filename)
+
+    with open(filepath, "w") as file:
+        file.write(f"GA Hiperparametri:\n")
+        file.write(f"  Velicina populacije: {POPULATION_SIZE}\n")
+        file.write(f"  Broj generacija: {GENERATIONS}\n")
+        file.write(f"  Velicina turnira: {TOURNAMENT_SIZE}\n")
+        file.write(f"  Verovatnoca ukrstanja: {CROSSOVER_RATE:.2f}\n")
+        file.write(f"  Verovatnoca mutacije: {MUTATION_RATE:.2f}\n")
+        file.write(f"  Elitizam: {ELITE_COUNT} najboljih zadrzavano\n")
+        file.write(f"  Broj pokretanja: {NUM_RUNS}\n")
+        file.write(f"\n{'='*80}\n")
+        file.write(f"  REZULTATI SVIH POKRETANJA\n")
+        file.write(f"{'='*80}\n\n")
+
+        for run_index, profit in enumerate(run_profits):
+            file.write(f"  Pokretanje {run_index + 1:3d}: {profit:,} dinara\n")
+
+        file.write(f"\n{'='*80}\n")
+        file.write(f"  MEDIJANA: {median_profit:,.1f} dinara\n")
+        file.write(f"  NAJBOLJI: {best_overall_profit:,} dinara\n")
+        file.write(f"  NAJGORI:  {min(run_profits):,} dinara\n")
+        file.write(f"  PROSEK:   {statistics.mean(run_profits):,.1f} dinara\n")
+        if len(run_profits) > 1:
+            file.write(f"  STD DEV:  {statistics.stdev(run_profits):,.1f} dinara\n")
+        file.write(f"{'='*80}\n")
+
+    print(f"\nRezultati sacuvani u: {filepath}")
+    return filepath
 
 
 # ── Entry Point ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    random.seed(42)
-    best_chromosome, best_profit = run_ga()
-    print_solution(best_chromosome, best_profit)
+    run_profits = []
+    best_overall_chromosome = None
+    best_overall_profit = 0
+
+    for run_index in range(NUM_RUNS):
+        print(f"\n{'#'*80}")
+        print(f"  POKRETANJE {run_index + 1}/{NUM_RUNS}")
+        print(f"{'#'*80}")
+
+        random.seed(run_index)
+        np.random.seed(run_index)
+        best_chromosome, best_profit = run_ga()
+        run_profits.append(best_profit)
+
+        if best_profit > best_overall_profit:
+            best_overall_profit = best_profit
+            best_overall_chromosome = best_chromosome
+
+        print(f"\n  Pokretanje {run_index + 1} zavrseno | Zarada: {best_profit:,}")
+
+    median_profit = statistics.median(run_profits)
+
+    print(f"\n{'='*80}")
+    print(f"  SUMARNI REZULTATI ({NUM_RUNS} pokretanja)")
+    print(f"{'='*80}")
+    for run_index, profit in enumerate(run_profits):
+        print(f"  Pokretanje {run_index + 1:3d}: {profit:,} dinara")
+    print(f"\n  MEDIJANA: {median_profit:,.1f} dinara")
+    print(f"  NAJBOLJI: {best_overall_profit:,} dinara")
+    print(f"  NAJGORI:  {min(run_profits):,} dinara")
+    print(f"  PROSEK:   {statistics.mean(run_profits):,.1f} dinara")
+    if len(run_profits) > 1:
+        print(f"  STD DEV:  {statistics.stdev(run_profits):,.1f} dinara")
+    print(f"{'='*80}")
+
+    print_solution(best_overall_chromosome, best_overall_profit)
+    save_results(run_profits, best_overall_profit, best_overall_chromosome)
