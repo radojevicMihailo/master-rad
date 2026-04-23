@@ -2,6 +2,7 @@ import csv
 import random
 import os
 import statistics
+import time
 from datetime import datetime
 
 import numpy as np
@@ -392,7 +393,7 @@ RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"rezulta
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 
-def save_results(run_profits, best_overall_profit, best_overall_chromosome):
+def save_results(run_profits, run_times, best_overall_profit, best_overall_chromosome):
     """Save all run results and median to file."""
     median_profit = statistics.median(run_profits)
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -412,8 +413,8 @@ def save_results(run_profits, best_overall_profit, best_overall_chromosome):
         file.write(f"  REZULTATI SVIH POKRETANJA\n")
         file.write(f"{'='*80}\n\n")
 
-        for run_index, profit in enumerate(run_profits):
-            file.write(f"  Pokretanje {run_index + 1:3d}: {profit:,} dinara\n")
+        for run_index, (profit, elapsed) in enumerate(zip(run_profits, run_times)):
+            file.write(f"  Pokretanje {run_index + 1:3d}: {profit:,} dinara  ({elapsed:.2f}s)\n")
 
         file.write(f"\n{'='*80}\n")
         file.write(f"  MEDIJANA: {median_profit:,.1f} dinara\n")
@@ -422,6 +423,9 @@ def save_results(run_profits, best_overall_profit, best_overall_chromosome):
         file.write(f"  PROSEK:   {statistics.mean(run_profits):,.1f} dinara\n")
         if len(run_profits) > 1:
             file.write(f"  STD DEV:  {statistics.stdev(run_profits):,.1f} dinara\n")
+        total_time = sum(run_times)
+        file.write(f"\n  UKUPNO VREME:  {total_time:.2f}s\n")
+        file.write(f"  PROSECNO VREME: {statistics.mean(run_times):.2f}s\n")
         file.write(f"{'='*80}\n")
 
     print(f"\nRezultati sacuvani u: {filepath}")
@@ -432,6 +436,7 @@ def save_results(run_profits, best_overall_profit, best_overall_chromosome):
 
 if __name__ == "__main__":
     run_profits = []
+    run_times = []
     best_overall_chromosome = None
     best_overall_profit = 0
 
@@ -442,29 +447,35 @@ if __name__ == "__main__":
 
         random.seed(run_index)
         np.random.seed(run_index)
+        start_time = time.time()
         best_chromosome, best_profit = run_ga()
+        elapsed_time = time.time() - start_time
         run_profits.append(best_profit)
+        run_times.append(elapsed_time)
 
         if best_profit > best_overall_profit:
             best_overall_profit = best_profit
             best_overall_chromosome = best_chromosome
 
-        print(f"\n  Pokretanje {run_index + 1} zavrseno | Zarada: {best_profit:,}")
+        print(f"\n  Pokretanje {run_index + 1} zavrseno | Zarada: {best_profit:,} | Vreme: {elapsed_time:.2f}s")
 
     median_profit = statistics.median(run_profits)
 
     print(f"\n{'='*80}")
     print(f"  SUMARNI REZULTATI ({NUM_RUNS} pokretanja)")
     print(f"{'='*80}")
-    for run_index, profit in enumerate(run_profits):
-        print(f"  Pokretanje {run_index + 1:3d}: {profit:,} dinara")
+    for run_index, (profit, elapsed) in enumerate(zip(run_profits, run_times)):
+        print(f"  Pokretanje {run_index + 1:3d}: {profit:,} dinara  ({elapsed:.2f}s)")
     print(f"\n  MEDIJANA: {median_profit:,.1f} dinara")
     print(f"  NAJBOLJI: {best_overall_profit:,} dinara")
     print(f"  NAJGORI:  {min(run_profits):,} dinara")
     print(f"  PROSEK:   {statistics.mean(run_profits):,.1f} dinara")
     if len(run_profits) > 1:
         print(f"  STD DEV:  {statistics.stdev(run_profits):,.1f} dinara")
+    total_time = sum(run_times)
+    print(f"\n  UKUPNO VREME:  {total_time:.2f}s")
+    print(f"  PROSECNO VREME: {statistics.mean(run_times):.2f}s")
     print(f"{'='*80}")
 
     print_solution(best_overall_chromosome, best_overall_profit)
-    save_results(run_profits, best_overall_profit, best_overall_chromosome)
+    save_results(run_profits, run_times, best_overall_profit, best_overall_chromosome)
