@@ -1,0 +1,34 @@
+Random Search Parametri:
+  Velicina populacije: 1000
+  Broj generacija: 200
+  Ukupno evaluacija po pokretanju: 200000
+  Broj pokretanja: 15
+
+================================================================================
+  REZULTATI SVIH POKRETANJA
+================================================================================
+
+  Pokretanje   1: 74,705 dinara  (35.28s)
+  Pokretanje   2: 74,441 dinara  (35.24s)
+  Pokretanje   3: 74,516 dinara  (35.18s)
+  Pokretanje   4: 74,649 dinara  (35.24s)
+  Pokretanje   5: 74,800 dinara  (35.27s)
+  Pokretanje   6: 74,238 dinara  (35.29s)
+  Pokretanje   7: 74,650 dinara  (35.22s)
+  Pokretanje   8: 74,408 dinara  (35.22s)
+  Pokretanje   9: 74,422 dinara  (35.24s)
+  Pokretanje  10: 74,770 dinara  (35.22s)
+  Pokretanje  11: 74,436 dinara  (35.19s)
+  Pokretanje  12: 74,814 dinara  (35.22s)
+  Pokretanje  13: 74,512 dinara  (35.24s)
+  Pokretanje  14: 74,301 dinara  (35.33s)
+  Pokretanje  15: 74,249 dinara  (35.19s)
+
+================================================================================
+  MEDIJANA: 74,512.0 dinara
+  NAJBOLJI: 74,814 dinara
+  NAJGORI:  74,238 dinara
+
+  UKUPNO VREME:  528.59s
+  PROSECNO VREME: 35.24s
+================================================================================

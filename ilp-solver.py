@@ -6,9 +6,9 @@ import pulp
 
 # ── Configuration ────────────────────────────────────────────────────────────
 
-PROBLEM_SIZE = "10x10"
+PROBLEM_SIZE = "1000x1000"
 MAX_TIME = 2880
-TIME_LIMIT_SECONDS = 1000  # solver time limit
+TIME_LIMIT_SECONDS = 150  # solver time limit
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, f"podaci-{PROBLEM_SIZE}")

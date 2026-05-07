@@ -1,0 +1,47 @@
+GA Hiperparametri:
+  Velicina populacije: 1000
+  Broj generacija: 100
+  Velicina turnira: 5
+  Verovatnoca ukrstanja: 0.85
+  Verovatnoca mutacije: 0.15
+  Elitizam: 10 najboljih zadrzavano
+  Broj pokretanja: 25
+
+================================================================================
+  REZULTATI SVIH POKRETANJA
+================================================================================
+
+  Pokretanje   1: 88,269 dinara  (13.57s)
+  Pokretanje   2: 88,696 dinara  (14.18s)
+  Pokretanje   3: 87,916 dinara  (13.70s)
+  Pokretanje   4: 88,335 dinara  (13.57s)
+  Pokretanje   5: 88,396 dinara  (13.28s)
+  Pokretanje   6: 88,251 dinara  (13.57s)
+  Pokretanje   7: 88,544 dinara  (13.33s)
+  Pokretanje   8: 88,262 dinara  (13.45s)
+  Pokretanje   9: 88,150 dinara  (13.25s)
+  Pokretanje  10: 88,263 dinara  (13.47s)
+  Pokretanje  11: 88,366 dinara  (13.56s)
+  Pokretanje  12: 88,274 dinara  (13.55s)
+  Pokretanje  13: 88,332 dinara  (13.93s)
+  Pokretanje  14: 88,257 dinara  (13.77s)
+  Pokretanje  15: 88,085 dinara  (13.66s)
+  Pokretanje  16: 88,131 dinara  (13.36s)
+  Pokretanje  17: 88,092 dinara  (13.88s)
+  Pokretanje  18: 88,353 dinara  (13.74s)
+  Pokretanje  19: 88,375 dinara  (13.29s)
+  Pokretanje  20: 88,485 dinara  (13.54s)
+  Pokretanje  21: 88,375 dinara  (13.72s)
+  Pokretanje  22: 88,396 dinara  (14.00s)
+  Pokretanje  23: 88,410 dinara  (13.67s)
+  Pokretanje  24: 88,340 dinara  (13.49s)
+  Pokretanje  25: 88,509 dinara  (14.02s)
+
+================================================================================
+  MEDIJANA: 88,335.0 dinara
+  NAJBOLJI: 88,696 dinara
+  NAJGORI:  87,916 dinara
+
+  UKUPNO VREME:  340.57s
+  PROSECNO VREME: 13.62s
+================================================================================

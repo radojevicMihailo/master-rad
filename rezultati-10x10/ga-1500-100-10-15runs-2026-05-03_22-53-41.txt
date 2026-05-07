@@ -1,0 +1,37 @@
+GA Hiperparametri:
+  Velicina populacije: 1500
+  Broj generacija: 100
+  Velicina turnira: 5
+  Verovatnoca ukrstanja: 0.85
+  Verovatnoca mutacije: 0.15
+  Elitizam: 10 najboljih zadrzavano
+  Broj pokretanja: 15
+
+================================================================================
+  REZULTATI SVIH POKRETANJA
+================================================================================
+
+  Pokretanje   1: 88,606 dinara  (21.03s)
+  Pokretanje   2: 88,718 dinara  (20.87s)
+  Pokretanje   3: 88,365 dinara  (20.31s)
+  Pokretanje   4: 88,357 dinara  (19.88s)
+  Pokretanje   5: 88,287 dinara  (19.98s)
+  Pokretanje   6: 88,521 dinara  (20.04s)
+  Pokretanje   7: 88,463 dinara  (20.25s)
+  Pokretanje   8: 88,531 dinara  (20.21s)
+  Pokretanje   9: 88,294 dinara  (20.15s)
+  Pokretanje  10: 88,402 dinara  (20.46s)
+  Pokretanje  11: 88,431 dinara  (20.17s)
+  Pokretanje  12: 88,244 dinara  (19.97s)
+  Pokretanje  13: 88,567 dinara  (20.24s)
+  Pokretanje  14: 88,287 dinara  (20.08s)
+  Pokretanje  15: 88,563 dinara  (20.55s)
+
+================================================================================
+  MEDIJANA: 88,431.0 dinara
+  NAJBOLJI: 88,718 dinara
+  NAJGORI:  88,244 dinara
+
+  UKUPNO VREME:  304.19s
+  PROSECNO VREME: 20.28s
+================================================================================
