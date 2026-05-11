@@ -6,7 +6,7 @@ import pulp
 
 # ── Configuration ────────────────────────────────────────────────────────────
 
-PROBLEM_SIZE = "1000x1000"
+PROBLEM_SIZE = "10x10"
 MAX_TIME = 2880
 TIME_LIMIT_SECONDS = 150  # solver time limit
 
