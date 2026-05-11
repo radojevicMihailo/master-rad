@@ -95,8 +95,8 @@ print(f"Dimenzije problema: {NUM_SERVICES} servisa x {NUM_COMPUTERS} racunara")
 
 # ── Random Search Hyperparameters (mirrors GA budget) ─────────────────────────
 
-POPULATION_SIZE = 1000
-GENERATIONS = 200
+POPULATION_SIZE = 100
+GENERATIONS = 500
 
 print("\nRandom Search Parametri:")
 print(f"  Velicina populacije: {POPULATION_SIZE}")
@@ -203,7 +203,7 @@ def run_random_search():
             best_ever = population[generation_best_index].copy()
 
         if generation % 10 == 0:
-            print(f"Gen {generation:4d} | Best gen: {generation_best_fitness:,} | Best ever: {best_fitness_ever:,}")
+            print(f"Gen {generation:4d} | Gen: {generation_best_fitness:,} | Best ever: {best_fitness_ever:,}")
 
     return best_ever, best_fitness_ever, generation_best_history
 
