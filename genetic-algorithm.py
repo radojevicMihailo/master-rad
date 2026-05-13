@@ -102,7 +102,7 @@ print(f"Traznja po servisu: {DEMAND[0]} (uniformna)")
 # ── GA Hyperparameters ────────────────────────────────
 
 POPULATION_SIZE = 100
-GENERATIONS = 100
+GENERATIONS = 200
 TOURNAMENT_SIZE = 10
 CROSSOVER_RATE = 0.8
 MUTATION_RATE = 0.15
@@ -303,13 +303,13 @@ def run_ga():
 
 # ── Multi-Run with Median ────────────────────────────────────────────────────
 
-NUM_RUNS = 11
+NUM_RUNS = 15
 
 RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"rezultati-{PROBLEM_SIZE}")
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 
-def save_results(run_profits, run_times, best_overall_profit, best_overall_chromosome, all_histories):
+def save_results(run_profits, run_times, best_overall_profit, all_histories):
     """Save all run results and median to file."""
     median_profit = statistics.median(run_profits)
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -381,7 +381,6 @@ if __name__ == "__main__":
     run_profits = []
     run_times = []
     all_histories = []
-    best_overall_chromosome = None
     best_overall_profit = 0
 
     for run_index in range(NUM_RUNS):
@@ -400,7 +399,6 @@ if __name__ == "__main__":
 
         if best_profit > best_overall_profit:
             best_overall_profit = best_profit
-            best_overall_chromosome = best_chromosome
 
         print(f"\n  Pokretanje {run_index + 1} zavrseno | Zarada: {best_profit:,} | Vreme: {elapsed_time:.2f}s")
 
@@ -422,5 +420,5 @@ if __name__ == "__main__":
     print("\n" + "=" * 80)
     print(f"  MAKSIMALNA ZARADA: {best_overall_profit:,} dinara")
     print("=" * 80)
-    save_results(run_profits, run_times, best_overall_profit, best_overall_chromosome, all_histories)
+    save_results(run_profits, run_times, best_overall_profit, all_histories)
     save_convergence_plot(all_histories)
