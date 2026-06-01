@@ -1,0 +1,120 @@
+GA Hiperparametri (C++):
+  Velicina populacije: 1000
+  Broj generacija: 100
+  Velicina turnira: 10
+  Verovatnoca ukrstanja: 0.8
+  Verovatnoca mutacije: 0.15
+  Elitizam: 10
+  Broj pokretanja: 1
+
+  Pokretanje 1: 88483 dinara  (0.05s)
+
+  MEDIJANA: 88483.00
+  NAJBOLJI: 88483
+  NAJGORI:  88483
+  UKUPNO VREME: 0.05s
+  PROSECNO VREME: 0.05s
+
+NAJBOLJI PO GENERACIJAMA
+
+  Pokretanje 1:
+    Gen    0: 73247
+    Gen    1: 76464
+    Gen    2: 78046
+    Gen    3: 80024
+    Gen    4: 80339
+    Gen    5: 81556
+    Gen    6: 82392
+    Gen    7: 83373
+    Gen    8: 83775
+    Gen    9: 84173
+    Gen   10: 84441
+    Gen   11: 84601
+    Gen   12: 84820
+    Gen   13: 85285
+    Gen   14: 85464
+    Gen   15: 85609
+    Gen   16: 85873
+    Gen   17: 86054
+    Gen   18: 86154
+    Gen   19: 86189
+    Gen   20: 86468
+    Gen   21: 86661
+    Gen   22: 86842
+    Gen   23: 86902
+    Gen   24: 86912
+    Gen   25: 86922
+    Gen   26: 86983
+    Gen   27: 87029
+    Gen   28: 87100
+    Gen   29: 87166
+    Gen   30: 87192
+    Gen   31: 87288
+    Gen   32: 87301
+    Gen   33: 87379
+    Gen   34: 87430
+    Gen   35: 87523
+    Gen   36: 87603
+    Gen   37: 87654
+    Gen   38: 87670
+    Gen   39: 87712
+    Gen   40: 87717
+    Gen   41: 87744
+    Gen   42: 87755
+    Gen   43: 87781
+    Gen   44: 87783
+    Gen   45: 87790
+    Gen   46: 87832
+    Gen   47: 87832
+    Gen   48: 87848
+    Gen   49: 87877
+    Gen   50: 87897
+    Gen   51: 87959
+    Gen   52: 87992
+    Gen   53: 88039
+    Gen   54: 88052
+    Gen   55: 88072
+    Gen   56: 88082
+    Gen   57: 88107
+    Gen   58: 88119
+    Gen   59: 88150
+    Gen   60: 88193
+    Gen   61: 88199
+    Gen   62: 88203
+    Gen   63: 88209
+    Gen   64: 88219
+    Gen   65: 88222
+    Gen   66: 88234
+    Gen   67: 88255
+    Gen   68: 88266
+    Gen   69: 88277
+    Gen   70: 88277
+    Gen   71: 88289
+    Gen   72: 88305
+    Gen   73: 88308
+    Gen   74: 88332
+    Gen   75: 88342
+    Gen   76: 88377
+    Gen   77: 88387
+    Gen   78: 88389
+    Gen   79: 88394
+    Gen   80: 88417
+    Gen   81: 88417
+    Gen   82: 88430
+    Gen   83: 88434
+    Gen   84: 88439
+    Gen   85: 88444
+    Gen   86: 88462
+    Gen   87: 88463
+    Gen   88: 88468
+    Gen   89: 88470
+    Gen   90: 88476
+    Gen   91: 88476
+    Gen   92: 88478
+    Gen   93: 88478
+    Gen   94: 88483
+    Gen   95: 88483
+    Gen   96: 88483
+    Gen   97: 88483
+    Gen   98: 88483
+    Gen   99: 88483

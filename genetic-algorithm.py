@@ -13,7 +13,6 @@ import matplotlib.pyplot as plt
 PROBLEM_SIZE = "10x10"
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"podaci-{PROBLEM_SIZE}")
 
-
 def load_matrix_csv(filepath):
     """Load matrix from a CSV file (skip header row and first column)."""
     matrix = []
@@ -102,7 +101,7 @@ print(f"Traznja po servisu: {DEMAND[0]} (uniformna)")
 # ── GA Hyperparameters ────────────────────────────────
 
 POPULATION_SIZE = 100
-GENERATIONS = 200
+GENERATIONS = 100
 TOURNAMENT_SIZE = 10
 CROSSOVER_RATE = 0.8
 MUTATION_RATE = 0.15
@@ -273,7 +272,8 @@ def run_ga():
             stagnation_counter += 1
 
         if generation % 10 == 0:
-            print(f"Gen {generation:4d} | Best: {generation_best_fitness:,}")
+            now = datetime.now().strftime("%H:%M:%S")
+            print(f"[{now}] Gen {generation:4d} | Best: {generation_best_fitness:,}")
 
         # Diversity injection on stagnation
         if stagnation_counter > 0 and stagnation_counter % 100 == 0:
@@ -303,18 +303,23 @@ def run_ga():
 
 # ── Multi-Run with Median ────────────────────────────────────────────────────
 
-NUM_RUNS = 15
+NUM_RUNS = 1
 
 RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"rezultati-{PROBLEM_SIZE}")
 os.makedirs(RESULTS_DIR, exist_ok=True)
+
+TXT_DIR = os.path.join(RESULTS_DIR, "rezultati")
+os.makedirs(TXT_DIR, exist_ok=True)
+
+CSV_DIR = os.path.join(RESULTS_DIR, "svi-podaci")
+os.makedirs(CSV_DIR, exist_ok=True)
 
 
 def save_results(run_profits, run_times, best_overall_profit, all_histories):
     """Save all run results and median to file."""
     median_profit = statistics.median(run_profits)
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    filename = f"ga-{POPULATION_SIZE}-{GENERATIONS}-{ELITE_COUNT}-{NUM_RUNS}runs-{timestamp}.txt"
-    filepath = os.path.join(RESULTS_DIR, filename)
+    filename = f"ga-py-{POPULATION_SIZE}-{GENERATIONS}-{ELITE_COUNT}.txt"
+    filepath = os.path.join(TXT_DIR, filename)
 
     with open(filepath, "w") as file:
         file.write(f"GA Hiperparametri:\n")
@@ -332,10 +337,14 @@ def save_results(run_profits, run_times, best_overall_profit, all_histories):
         for run_index, (profit, elapsed) in enumerate(zip(run_profits, run_times)):
             file.write(f"  Pokretanje {run_index + 1:3d}: {profit:,} dinara  ({elapsed:.2f}s)\n")
 
+        mean_profit = statistics.mean(run_profits)
+        stdev_profit = statistics.pstdev(run_profits) if len(run_profits) > 1 else 0.0
         file.write(f"\n{'='*80}\n")
+        file.write(f"  PROSEK:   {mean_profit:,.1f} dinara\n")
         file.write(f"  MEDIJANA: {median_profit:,.1f} dinara\n")
         file.write(f"  NAJBOLJI: {best_overall_profit:,} dinara\n")
         file.write(f"  NAJGORI:  {min(run_profits):,} dinara\n")
+        file.write(f"  STDEV:    {stdev_profit:,.1f} dinara\n")
         total_time = sum(run_times)
         file.write(f"\n  UKUPNO VREME:  {total_time:.2f}s\n")
         file.write(f"  PROSECNO VREME: {statistics.mean(run_times):.2f}s\n")
@@ -355,7 +364,7 @@ def save_results(run_profits, run_times, best_overall_profit, all_histories):
 
 def save_convergence_plot(all_histories):
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    filename = f"ga-{POPULATION_SIZE}-{GENERATIONS}-{ELITE_COUNT}-{NUM_RUNS}runs-{timestamp}.png"
+    filename = f"ga-{POPULATION_SIZE}-{GENERATIONS}-{ELITE_COUNT}-{NUM_RUNS}runs-{timestamp}.svg"
     filepath = os.path.join(RESULTS_DIR, filename)
 
     plt.figure(figsize=(10, 6))
@@ -366,12 +375,30 @@ def save_convergence_plot(all_histories):
     plt.xlabel("Broj generacija x velicina populacije (broj evaluacija)")
     plt.ylabel("Vrednost funkcije cilja (zarada)")
     plt.title(f"Konvergencija GA — {PROBLEM_SIZE}, pop={POPULATION_SIZE}, gen={GENERATIONS}")
-    plt.grid(True, alpha=0.3)
+    plt.xscale("log")
+    plt.yscale("log")
+    plt.grid(True, which="both", alpha=0.3)
     plt.legend(loc="lower right", fontsize=8)
     plt.tight_layout()
-    plt.savefig(filepath, dpi=120)
+    plt.savefig(filepath, format="svg")
     plt.close()
     print(f"Grafik sacuvan u: {filepath}")
+    return filepath
+
+
+def save_convergence_csv(all_histories):
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    filename = f"ga-py-convergence-{POPULATION_SIZE}-{GENERATIONS}-{ELITE_COUNT}.csv"
+    filepath = os.path.join(CSV_DIR, filename)
+
+    with open(filepath, "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["run", "generation", "evaluations", "best_fitness"])
+        for run_index, history in enumerate(all_histories):
+            for generation, best in enumerate(history):
+                writer.writerow([run_index + 1, generation, (generation + 1) * POPULATION_SIZE, best])
+
+    print(f"Konvergencija (CSV) sacuvana u: {filepath}")
     return filepath
 
 
@@ -422,3 +449,4 @@ if __name__ == "__main__":
     print("=" * 80)
     save_results(run_profits, run_times, best_overall_profit, all_histories)
     save_convergence_plot(all_histories)
+    save_convergence_csv(all_histories)

@@ -1,0 +1,27 @@
+Random Search Parametri (C++):
+  Broj evaluacija po pokretanju: 50000
+  Broj pokretanja: 15
+
+  Pokretanje 1: 74145 dinara  (0.12s)
+  Pokretanje 2: 74423 dinara  (0.10s)
+  Pokretanje 3: 73946 dinara  (0.10s)
+  Pokretanje 4: 74003 dinara  (0.10s)
+  Pokretanje 5: 74276 dinara  (0.10s)
+  Pokretanje 6: 74093 dinara  (0.10s)
+  Pokretanje 7: 74356 dinara  (0.10s)
+  Pokretanje 8: 74152 dinara  (0.10s)
+  Pokretanje 9: 74002 dinara  (0.10s)
+  Pokretanje 10: 73950 dinara  (0.10s)
+  Pokretanje 11: 74739 dinara  (0.10s)
+  Pokretanje 12: 74291 dinara  (0.10s)
+  Pokretanje 13: 74370 dinara  (0.10s)
+  Pokretanje 14: 74604 dinara  (0.10s)
+  Pokretanje 15: 74204 dinara  (0.10s)
+
+  PROSEK:   74236.9
+  MEDIJANA: 74204.0
+  NAJBOLJI: 74739
+  NAJGORI:  73946
+  STDEV:    226.9
+  UKUPNO VREME: 1.5s
+  PROSECNO VREME: 0.1s
