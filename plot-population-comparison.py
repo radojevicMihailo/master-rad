@@ -22,15 +22,11 @@ RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rezultat
 "")
 
 CSV_FILES = [
-    "rezultati-10x10/svi-podaci/ga-cpp-convergence-100-1000-3.csv",
-    "rezultati-10x10/svi-podaci/ga-cpp-convergence-200-500-6.csv",
-    "rezultati-10x10/svi-podaci/ga-cpp-convergence-500-200-15.csv",
-    "rezultati-10x10/svi-podaci/ga-cpp-convergence-1000-100-30.csv",
-    "rezultati-10x10/svi-podaci/ga-cpp-convergence-2000-50-50.csv",
-    "rezultati-10x10/svi-podaci/random-cpp-convergence-100000eval.csv",
+    "rezultati-10x10/svi-podaci/ga-cpp-convergence-1000-1000-30.csv",
+    "rezultati-10x10/svi-podaci/ga-cpp-convergence-2000-500-50.csv",
 ]
 
-OUTPUT_PATH = os.path.join(RESULTS_DIR, "compare-average-10x10.svg")
+OUTPUT_PATH = os.path.join(RESULTS_DIR, "compare-average-10x10-1.svg")
 
 
 def label_from_path(path):
