@@ -1,0 +1,24 @@
+1. Uvod
+	-opis problema (kako glasi zadatak)
+	-NLP problem
+	-highs.... ILP
+	-stohastičke algoritme koji se pre svega koriste na problemima velikih dimenzija
+
+2. Genetički algoritam?
+	-ukratko koraci algoritma (blok dijagram)
+	
+3. Rezultati
+	3.1. Problem 10x10 
+	3.2. Problem 100x100 
+	3.3. Problem 1000x1000
+	-resenje highs algoritmom (i drugi)
+	-resenje GA
+	-poređenje highs i GA (vreme izvrsavanja na istom računuru, konfiguracija)
+	-analiza GA: poređenja kumulativnih maksimumuma uz diskusiju
+
+napomena: font na graficima optrilike veličine fonta u tekstu
+
+4. Zaključak
+
+Reference
+	

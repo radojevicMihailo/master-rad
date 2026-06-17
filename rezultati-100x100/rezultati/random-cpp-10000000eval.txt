@@ -1,0 +1,13 @@
+Random Search Parametri (C++):
+  Broj evaluacija po pokretanju: 10000000
+  Broj pokretanja: 1
+
+  Pokretanje 1: 1003308 dinara  (1761.35s)
+
+  PROSEK:   1003308.0
+  MEDIJANA: 1003308.0
+  NAJBOLJI: 1003308
+  NAJGORI:  1003308
+  STDEV:    0.0
+  UKUPNO VREME: 1761.4s
+  PROSECNO VREME: 1761.4s

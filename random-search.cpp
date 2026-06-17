@@ -22,10 +22,10 @@
 namespace fs = std::filesystem;
 
 // ── Parameters ───────────────────────────────────────────────────────────────
-static const std::string PROBLEM_SIZE = "10x10";
-static const long long EVALUATIONS = 100000; // total random solutions per run
-static const int SAMPLE_INTERVAL = 100;      // record best-so-far every N evaluations
-static const int NUM_RUNS = 15;
+static const std::string PROBLEM_SIZE = "1000x1000";
+static const long long EVALUATIONS = 2000000; // total random solutions per run
+static const int SAMPLE_INTERVAL = 20000;     // record best-so-far every N evaluations
+static const int NUM_RUNS = 1;
 static const int MAX_TIME = 2880;
 
 // ── Globals (problem data) ───────────────────────────────────────────────────
@@ -303,10 +303,11 @@ static RunResult run_random_search()
         if (evaluation % SAMPLE_INTERVAL == 0 || evaluation == EVALUATIONS)
         {
             history.push_back({evaluation, best_fitness_ever});
-            if ((evaluation / SAMPLE_INTERVAL) % 10 == 0)
-                std::cout << "Eval " << std::setw(8) << evaluation
-                          << " | Best ever: " << best_fitness_ever << "\n";
         }
+        if (evaluation % 100000 == 0 || evaluation == EVALUATIONS)
+            std::cout << "Eval " << std::setw(8) << evaluation
+                      << " | Fitness: " << std::setw(12) << f
+                      << " | Best ever: " << best_fitness_ever << "\n";
     }
 
     auto end_time = std::chrono::steady_clock::now();

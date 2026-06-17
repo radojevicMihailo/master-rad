@@ -21,15 +21,15 @@
 namespace fs = std::filesystem;
 
 // ── Hyperparameters ──────────────────────────────────────────────────────────
-static const std::string PROBLEM_SIZE = "10x10";
-static const int POPULATION_SIZE = 2000;
-static const int GENERATIONS = 500;
-static const int TOURNAMENT_SIZE = 7;
+static const std::string PROBLEM_SIZE = "100x100";
+static const int POPULATION_SIZE = 200000;
+static const int GENERATIONS = 200;
+static const int TOURNAMENT_SIZE = 15;
 static const double CROSSOVER_RATE = 0.8;
 static const double MUTATION_RATE = 0.15;
-static const int MUTATION_GENES = 1; // cells changed per mutation event (scale up for big problems)
-static const int ELITE_COUNT = 50;
-static const int NUM_RUNS = 15;
+static const int MUTATION_GENES = 50; // cells changed per mutation event (scale up for big problems)
+static const int ELITE_COUNT = 10000;
+static const int NUM_RUNS = 2;
 static const int MAX_TIME = 2880;
 
 // ── Globals (problem data) ───────────────────────────────────────────────────
