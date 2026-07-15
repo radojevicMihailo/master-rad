@@ -1,0 +1,329 @@
+
+===== STRANA 1 =====
+[1] (Highlight, Korisnik)
+Da li moze naslovna strana da bude kao u dokumentu sa preporukama za oblikovanje mater rada sa sajta Fakulteta?https://www.etf.bg.ac.rs/sr/studiranje/dokumenta/master-studije
+------------------------------------------------------------
+
+===== STRANA 2 =====
+[2] (Highlight, Korisnik)
+Ja bih izostavila ovo poglavlje, a ono što piše tu, prebacila neposredno ispod naslova Uvod, a pre narednog podnaslova
+------------------------------------------------------------
+[3] (Highlight, Korisnik)
+genetičkogispraviti svuda
+------------------------------------------------------------
+[4] (Highlight, Korisnik)
+nisam sigurna da razumem ovaj deo rečeniceostavila bih samo "matematička formulacija".
+------------------------------------------------------------
+[5] (Highlight, Korisnik)
+Ovde bih stavila tačku, pa počela novu rečenicu.
+------------------------------------------------------------
+[6] (Highlight, Korisnik)
+Ovo bih sklonila ili preformulisala u jednu rečenicu.
+------------------------------------------------------------
+[7] (Highlight, Korisnik)
+ako dobro razmem šta ste hteli da kažete, verovatno postoji adekvatniji termin od evidencija na ovom mestu
+------------------------------------------------------------
+
+===== STRANA 5 =====
+[8] (Highlight, Korisnik)
+da li je "je potrebno izvršiti" adekvatnije na ovom mestu?
+------------------------------------------------------------
+[9] (Highlight, Korisnik)
+i da što svi zahtevi za servisima budu ispunjeni
+------------------------------------------------------------
+[10] (Highlight, Korisnik)
+planiranom
+------------------------------------------------------------
+[11] (Highlight, Korisnik)
+Možda bih preformulisala ovu rečenicu.Umesto tražnja bih koristila zahteva rekla bih i da to nije maksimalan broj koji ne smemo da prekoracimo, nego broj servisa koje je potrebno realizovati
+------------------------------------------------------------
+[12] (Highlight, Korisnik)
+metoda za rešavanje.
+------------------------------------------------------------
+[13] (Highlight, Korisnik)
+garantovani optimum Mada, kada je u pitanju LP, zaista postoji matematički dokaz da je pronađeno rešenje min (ili max). Kada je u pitanju celobrojno LP, takav dokaz ne postoji. Zato celobrojno linearno programiranje i jeste NP hard optimizacioni problem.
+------------------------------------------------------------
+[14] (Text, Korisnik)
+Tako da, ja bih preformulisala ovaj deo, jer ne postoji garanovani optimum u opštem slučaju prblema ILP.
+------------------------------------------------------------
+[15] (Highlight, Korisnik)
+broj zahteva?
+------------------------------------------------------------
+
+===== STRANA 6 =====
+[16] (Highlight, Korisnik)
+uvesti skraćenicu ranije ili je ovde staviti punu reč
+------------------------------------------------------------
+[17] (Highlight, Korisnik)
+rekla bih "specijalizovane metode namenjene za specifične probleme"
+------------------------------------------------------------
+[18] (Highlight, Korisnik)
+Potpuna
+------------------------------------------------------------
+[19] (Highlight, Korisnik)
+vrednostima optimizacione funkcije
+------------------------------------------------------------
+[20] (Highlight, Korisnik)
+rešenje zadovoljavalo sva ograničenja
+------------------------------------------------------------
+
+===== STRANA 7 =====
+[21] (Highlight, Korisnik)
+izbacila bih
+------------------------------------------------------------
+[22] (Highlight, Korisnik)
+početna
+------------------------------------------------------------
+[23] (Highlight, Korisnik)
+Pošto se ne pominje prvi put, ja bih zagradu ovde sklonila i stavila na mestu gde se ova sintagma prvi put pominje
+------------------------------------------------------------
+[24] (Highlight, Korisnik)
+da li bismo mogli ovu reč "rešavač" da zamnimo nekom drugom? metodama ili možda nešto što Vama pada na pamet?
+------------------------------------------------------------
+[25] (Highlight, Korisnik)
+pocetna
+------------------------------------------------------------
+
+===== STRANA 8 =====
+[26] (Highlight, Korisnik)
+na krusu obicno kazemooptimizaciju jatom
+------------------------------------------------------------
+[27] (Highlight, Korisnik)
+evolutivne
+------------------------------------------------------------
+[28] (Highlight, Korisnik)
+ovo nisam sigurna da razumem
+------------------------------------------------------------
+[29] (Highlight, Korisnik)
+veliki
+------------------------------------------------------------
+[30] (Highlight, Korisnik)
+specijalizovanih
+------------------------------------------------------------
+[31] (Highlight, Korisnik)
+ne razumem zasto bi matrica celobrojnih resenja bila prirodnija reprezentacija za GA nego realnih resenja
+------------------------------------------------------------
+[32] (Highlight, Korisnik)
+rekla bihponekad i popravlja funkciju cilja
+------------------------------------------------------------
+[33] (Highlight, Korisnik)
+Mozda je kompaktnije Primeri iz prakse
+------------------------------------------------------------
+[34] (Highlight, Korisnik)
+Čini mi se da sam ovaj tekst već pročitala negde iznad. Mislim da ga ne treba ponavljati.
+------------------------------------------------------------
+
+===== STRANA 9 =====
+[35] (Highlight, Korisnik)
+rekla bih samo slucajnom pretragom
+------------------------------------------------------------
+[36] (Highlight, Korisnik)
+implementrian
+------------------------------------------------------------
+[37] (Highlight, Korisnik)
+Algoritam nije dodatno obogaćen mehanizmima eltiizna i injekcije raznolikosti, negoZa selekciju je korišćen elitizam. ako se već ovde pominje injekcija raznolikosti rekla bih sta je, jer to nije standardni pojam.
+------------------------------------------------------------
+[38] (Highlight, Korisnik)
+Zašto se poglavlje 4 ovde ne pominje?
+------------------------------------------------------------
+
+===== STRANA 10 =====
+[39] (Highlight, Korisnik)
+Ovde pise tri, a ispod su navedena dva..Mada, ne ane bih rekla da je elitizam nesto sto se dodaje u GA da ga obogati, jer to je samo jedan nacin realizacije operatora selekcije.
+------------------------------------------------------------
+[40] (Highlight, Korisnik)
+Nisam sigurna da razumem
+------------------------------------------------------------
+[41] (Highlight, Korisnik)
+drzala bih se jednog terminaako je gore bilo izracunavanje funkcije cilja, to bih korisitla i dalje
+------------------------------------------------------------
+[42] (Highlight, Korisnik)
+hromozoma, jer postaje roditelj tek ako pobedi u turniru
+------------------------------------------------------------
+[43] (Highlight, Korisnik)
+preformulisati, nije jasno sta ste hteli da kazete
+------------------------------------------------------------
+
+===== STRANA 11 =====
+[44] (Highlight, Korisnik)
+da li ova rec najrentabilnihih moze da se zameni nekom drugom?
+------------------------------------------------------------
+
+===== STRANA 12 =====
+[45] (Highlight, Korisnik)
+preformulisala bih
+------------------------------------------------------------
+[46] (Highlight, Korisnik)
+zarez umesto tacke i razmak pre %
+------------------------------------------------------------
+[47] (Highlight, Korisnik)
+postizanja ili samo čuvanja
+------------------------------------------------------------
+
+===== STRANA 13 =====
+[48] (Highlight, Korisnik)
+posle unapred zadatog broja generacija
+------------------------------------------------------------
+
+===== STRANA 16 =====
+[49] (Highlight, Korisnik)
+Treba malo preciznije reci kako se racuna procenat opt.
+------------------------------------------------------------
+[50] (Highlight, Korisnik)
+Tako je, inace ne bi imalo smisla implementirati i cekati GA. Mada, ja ne bih rekla da je to pre svega zbog procedura popravke i elitizma, to je zbog celog algoritma kao tavog, koji ima svoju logiku.
+------------------------------------------------------------
+[51] (Highlight, Korisnik)
+Ovo nije bas inzenjerski. Ne možemo tek tako da napišemo nešto bez prethodne provere. Kako se stvarno koristi procedura popravke kod slucajne pretrage, to treba reci na prvom mestu gde se slucajna pretraga pominje, tj. pre rezultata u tabelama. Da bi onaj ko gleda brojeve i rezultate znao sta gleda.
+------------------------------------------------------------
+[52] (Highlight, Korisnik)
+nekako mi se ova rec ne uklapa. Da li moyemo da kazemo "u dva razlicita slucaja"
+------------------------------------------------------------
+[53] (Highlight, Korisnik)
+GA nalazi bolje resenje
+------------------------------------------------------------
+
+===== STRANA 17 =====
+[54] (Highlight, Korisnik)
+broj
+------------------------------------------------------------
+[55] (Highlight, Korisnik)
+tabeli 1 ili 2?
+------------------------------------------------------------
+[56] (Highlight, Korisnik)
+krie srednjih kululativnoih
+------------------------------------------------------------
+[57] (Highlight, Korisnik)
+za 15 pokretanja
+------------------------------------------------------------
+[58] (Highlight, Korisnik)
+i zbog same definicije kumulativnog maksimuma bi ta funkcija bila monotono neopadajuca. Da nema elitizma, bilo bi potrebnonegde sa strane cuvati najbolje do tada pronadjeno resenje, sto se uvek radi kod stohasticnih algoritama
+------------------------------------------------------------
+
+===== STRANA 18 =====
+[59] (Highlight, Korisnik)
+Ne znam da li sam pomesala, ali cini mi se da smo imali ovaj graf sa malo vise evaluacija, pa su se jasnije videli preseci krivih i zaravnjenja. Bilo bi dobro da to imamo,
+------------------------------------------------------------
+[60] (Highlight, Korisnik)
+Ovde treba reci i da GA sa manjom populacijom brze stize do maksimuma, ali da povecanje velicine populacije povecava i maksimumto ima smisla do neke velicine populacije, a onda se ti maksimumi jako priblizavaju i cekanje vece populacije vise nije inzenjerski prihvatljivo resenje
+------------------------------------------------------------
+
+===== STRANA 20 =====
+[61] (Highlight, Korisnik)
+ovde i na slici 5 pise ono sto sam pitala gore :)
+------------------------------------------------------------
+
+===== STRANA 22 =====
+[62] (Highlight, Korisnik)
+krive srednjih kululativnih
+------------------------------------------------------------
+[63] (Highlight, Korisnik)
+u x pokretanjanapisati koliko je x
+------------------------------------------------------------
+[64] (Highlight, Korisnik)
+funkcije cilja
+------------------------------------------------------------
+[65] (Highlight, Korisnik)
+opet isti komentar kao kod slike 4
+------------------------------------------------------------
+
+===== STRANA 23 =====
+[66] (Highlight, Korisnik)
+Ove slike nemaju legende, iako vidim da je tu nekoliko grafika preklopljeno
+------------------------------------------------------------
+
+===== STRANA 24 =====
+[67] (Highlight, Korisnik)
+preformulisati
+------------------------------------------------------------
+[68] (Highlight, Korisnik)
+sta znaci priblizno istim budzetom evaluacija? bolje brojem nego budzetom, ali svakako bi trebalo pojasniti sta je tu priblizno
+------------------------------------------------------------
+[69] (Highlight, Korisnik)
+broja evaluacija?
+------------------------------------------------------------
+[70] (Highlight, Korisnik)
+kako ovo znamo?
+------------------------------------------------------------
+
+===== STRANA 25 =====
+[71] (Highlight, Korisnik)
+Ovde bih pre rekla da HIGHS pronalazi bolje resenje, tj. da GA nalazi oko 3% losije resenje.
+------------------------------------------------------------
+[72] (Highlight, Korisnik)
+rekla bih značajno različita
+------------------------------------------------------------
+[73] (Highlight, Korisnik)
+neke nije bas pogodna odrednica kada pisemo master radovde neko moze da postavi pitanje - kako brzo resenje kad je HIGHS brzi
+------------------------------------------------------------
+[74] (Highlight, Korisnik)
+ako ovo pominjemo, treba navesti i primer
+------------------------------------------------------------
+[75] (Highlight, Korisnik)
+usrednjene u x pokretanja
+------------------------------------------------------------
+
+===== STRANA 26 =====
+[76] (Highlight, Korisnik)
+krivih srednjih kumulativnih maksimuma
+------------------------------------------------------------
+
+===== STRANA 27 =====
+[77] (Highlight, Korisnik)
+legende na slikama
+------------------------------------------------------------
+
+===== STRANA 28 =====
+[78] (Highlight, Korisnik)
+velikih
+------------------------------------------------------------
+
+===== STRANA 29 =====
+[79] (Highlight, Korisnik)
+ako imas ove rezultate, treba ih prikazati
+------------------------------------------------------------
+
+===== STRANA 31 =====
+[80] (Highlight, Korisnik)
+tabele 6
+------------------------------------------------------------
+
+===== STRANA 32 =====
+[81] (Highlight, Korisnik)
+preformulisala bih deo gde pise "potvrdjuje opstu intuiciiju o vrednosti memetskih algoritama". Zapravo, ne bih koristila uopste taj pojam memetski jer pre svega je ovo genetiki algoritam, a sama procedura poprapravke moze da se podvede i u deo funkcije greske.
+------------------------------------------------------------
+
+===== STRANA 33 =====
+[82] (Highlight, Korisnik)
+preformulisati ili skloniti
+------------------------------------------------------------
+[83] (Highlight, Korisnik)
+ja ne bih rekla da je ovo najvazniji nalaz rada, tu je uradjeno mnoog vise od dodavanja procedure popravke :) Doadatno, ne mogu sa sigurnscu da tvrdim da je znacajan deo kvaltitea resenja dosao od lokalnih heruistika. trece, ne bih pominjala memetske algoritme
+------------------------------------------------------------
+[84] (Highlight, Korisnik)
+ili bih ovo ubacila u listu, pa nabrajanje brojevima 1. 2. 3. ili bih promenila da ne bude prvo, drugo, trece pocetak svakog pasusa
+------------------------------------------------------------
+
+===== STRANA 34 =====
+[85] (Highlight, Korisnik)
+ovo potpoglavlje bih sklonila
+------------------------------------------------------------
+[86] (Highlight, Korisnik)
+nesto propustam....kako kada se zahteva brzi odziv ako je highs brzi od GA?
+------------------------------------------------------------
+
+===== STRANA 36 =====
+[87] (Highlight, Korisnik)
+Bilo bi lepo da u literaturi stoje i prezentacije sa predavanja
+------------------------------------------------------------
+
+===== STRANA 38 =====
+[88] (Highlight, Korisnik)
+Trebalo bi da ispred broja stoji i rec slikaSlika 1. Slika 2.
+------------------------------------------------------------
+
+===== STRANA 39 =====
+[89] (Highlight, Korisnik)
+Trebalo bi da ispred numeracija bude i rec, kao sto je i kod samih tabela i kao sto pise u uputstvu za oblikovanje master radaTabela 1....Tabela 2...
+------------------------------------------------------------
+
+Ukupno komentara: 89

@@ -53,6 +53,33 @@
       \field{title}{Knapsack Problems: Algorithms and Computer Implementations}
       \field{year}{1990}
     \endentry
+    \entry{Sipser2012}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=13b9c16a9de2bb891eb8aa2a768eb2a8}{%
+           family={Sipser},
+           familyi={S\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cengage Learning}%
+      }
+      \strng{namehash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
+      \strng{fullhash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
+      \strng{fullhashraw}{13b9c16a9de2bb891eb8aa2a768eb2a8}
+      \strng{bibnamehash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
+      \strng{authorbibnamehash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
+      \strng{authornamehash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
+      \strng{authorfullhash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
+      \strng{authorfullhashraw}{13b9c16a9de2bb891eb8aa2a768eb2a8}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3}
+      \field{title}{Introduction to the Theory of Computation}
+      \field{year}{2012}
+    \endentry
     \entry{FisherJaikumar1981}{article}{}{}
       \name{author}{2}{}{%
         {{hash=2d06e0a44c0de8061b5113e0d97f9186}{%
@@ -74,8 +101,8 @@
       \strng{authornamehash}{543af9dc7f383ec96ae5af234f651dd8}
       \strng{authorfullhash}{543af9dc7f383ec96ae5af234f651dd8}
       \strng{authorfullhashraw}{543af9dc7f383ec96ae5af234f651dd8}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Networks}
@@ -107,8 +134,8 @@
       \strng{authornamehash}{86ef055494565a1ad90c797dfa094644}
       \strng{authorfullhash}{86ef055494565a1ad90c797dfa094644}
       \strng{authorfullhashraw}{86ef055494565a1ad90c797dfa094644}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Computers \& Operations Research}
@@ -118,6 +145,69 @@
       \field{year}{1997}
       \field{pages}{17\bibrangedash 23}
       \range{pages}{7}
+    \endentry
+    \entry{OlcanPetrovicLP}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=7874e77e963aa8f95bb7eb67dbcc3e31}{%
+           family={Olćan},
+           familyi={O\bibinitperiod},
+           given={Dragan},
+           giveni={D\bibinitperiod}}}%
+        {{hash=1453fced6518e7f5d43584218851ee25}{%
+           family={Petrović},
+           familyi={P\bibinitperiod},
+           given={Jovana},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{fullhash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{fullhashraw}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{bibnamehash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{authorbibnamehash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{authornamehash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{authorfullhash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{authorfullhashraw}{a0af13007cdf714c47381cfd09a252b9}
+      \field{extraname}{1}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Prezentacija sa predavanja iz predmeta Optimizacioni algoritmi u inženjerstvu, Univerzitet u Beogradu -- Elektrotehnički fakultet}
+      \field{note}{Školska 2025/26. godina}
+      \field{title}{Linearno programiranje i {D}ancigov simpleks algoritam}
+      \verb{urlraw}
+      \verb http://mtt.etf.rs/ms/osnovni.optimizacioni.algoritmi.htm
+      \endverb
+      \verb{url}
+      \verb http://mtt.etf.rs/ms/osnovni.optimizacioni.algoritmi.htm
+      \endverb
+    \endentry
+    \entry{Wolsey2020}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=85dba919fdceaad20b2b4009570310cc}{%
+           family={Wolsey},
+           familyi={W\bibinitperiod},
+           given={Laurence\bibnamedelima A.},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons}%
+      }
+      \strng{namehash}{85dba919fdceaad20b2b4009570310cc}
+      \strng{fullhash}{85dba919fdceaad20b2b4009570310cc}
+      \strng{fullhashraw}{85dba919fdceaad20b2b4009570310cc}
+      \strng{bibnamehash}{85dba919fdceaad20b2b4009570310cc}
+      \strng{authorbibnamehash}{85dba919fdceaad20b2b4009570310cc}
+      \strng{authornamehash}{85dba919fdceaad20b2b4009570310cc}
+      \strng{authorfullhash}{85dba919fdceaad20b2b4009570310cc}
+      \strng{authorfullhashraw}{85dba919fdceaad20b2b4009570310cc}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2}
+      \field{title}{Integer Programming}
+      \field{year}{2020}
     \endentry
     \entry{HuangfuHall2018}{article}{}{}
       \name{author}{2}{}{%
@@ -140,8 +230,8 @@
       \strng{authornamehash}{2d7a2a6be03929119665a6e93fa8d29c}
       \strng{authorfullhash}{2d7a2a6be03929119665a6e93fa8d29c}
       \strng{authorfullhashraw}{2d7a2a6be03929119665a6e93fa8d29c}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Mathematical Programming Computation}
@@ -166,8 +256,8 @@
       \strng{authornamehash}{6526ed96aa5790fbccd09828135ac54e}
       \strng{authorfullhash}{6526ed96aa5790fbccd09828135ac54e}
       \strng{authorfullhashraw}{6526ed96aa5790fbccd09828135ac54e}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{{HiGHS} -- High Performance Software for Linear Optimization}
@@ -192,8 +282,8 @@
       \strng{authornamehash}{b4e549b66b9afd6b81ff646526ce911a}
       \strng{authorfullhash}{b4e549b66b9afd6b81ff646526ce911a}
       \strng{authorfullhashraw}{b4e549b66b9afd6b81ff646526ce911a}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Gurobi Optimizer Reference Manual}
@@ -234,8 +324,8 @@
       \strng{authornamehash}{5a1d9d9bdcecec43034296fa89cdb0a0}
       \strng{authorfullhash}{5a1d9d9bdcecec43034296fa89cdb0a0}
       \strng{authorfullhashraw}{5a1d9d9bdcecec43034296fa89cdb0a0}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{{PuLP}: A linear programming toolkit for {P}ython}
@@ -264,8 +354,8 @@
       \strng{authornamehash}{d489561d244344393eb26a974d85d1ba}
       \strng{authorfullhash}{d489561d244344393eb26a974d85d1ba}
       \strng{authorfullhashraw}{d489561d244344393eb26a974d85d1ba}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Adaptation in Natural and Artificial Systems}
@@ -293,8 +383,8 @@
       \strng{authornamehash}{f4dae5bf19584b96b5db33b402a449d8}
       \strng{authorfullhash}{f4dae5bf19584b96b5db33b402a449d8}
       \strng{authorfullhashraw}{f4dae5bf19584b96b5db33b402a449d8}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Genetic Algorithms in Search, Optimization, and Machine Learning}
@@ -324,39 +414,13 @@
       \strng{authornamehash}{aa9f836d8318138e1fb4ed8c5103a345}
       \strng{authorfullhash}{aa9f836d8318138e1fb4ed8c5103a345}
       \strng{authorfullhashraw}{aa9f836d8318138e1fb4ed8c5103a345}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{2}
       \field{title}{Introduction to Evolutionary Computing}
       \field{year}{2015}
-    \endentry
-    \entry{NumPy}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=5d41e41313a1c6d48282954d2eae2421}{%
-           family={{NumPy Developers}},
-           familyi={N\bibinitperiod}}}%
-      }
-      \strng{namehash}{5d41e41313a1c6d48282954d2eae2421}
-      \strng{fullhash}{5d41e41313a1c6d48282954d2eae2421}
-      \strng{fullhashraw}{5d41e41313a1c6d48282954d2eae2421}
-      \strng{bibnamehash}{5d41e41313a1c6d48282954d2eae2421}
-      \strng{authorbibnamehash}{5d41e41313a1c6d48282954d2eae2421}
-      \strng{authornamehash}{5d41e41313a1c6d48282954d2eae2421}
-      \strng{authorfullhash}{5d41e41313a1c6d48282954d2eae2421}
-      \strng{authorfullhashraw}{5d41e41313a1c6d48282954d2eae2421}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{NumPy: The fundamental package for scientific computing with Python}
-      \verb{urlraw}
-      \verb https://numpy.org
-      \endverb
-      \verb{url}
-      \verb https://numpy.org
-      \endverb
     \endentry
     \entry{Michalewicz1996}{book}{}{}
       \name{author}{1}{}{%
@@ -384,63 +448,68 @@
       \field{edition}{3}
       \field{title}{Genetic Algorithms + Data Structures = Evolution Programs}
       \field{year}{1996}
-      \true{nocite}
     \endentry
-    \entry{Wolsey2020}{book}{}{}
-      \name{author}{1}{}{%
-        {{hash=85dba919fdceaad20b2b4009570310cc}{%
-           family={Wolsey},
-           familyi={W\bibinitperiod},
-           given={Laurence\bibnamedelima A.},
-           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+    \entry{OlcanPetrovicGA}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=7874e77e963aa8f95bb7eb67dbcc3e31}{%
+           family={Olćan},
+           familyi={O\bibinitperiod},
+           given={Dragan},
+           giveni={D\bibinitperiod}}}%
+        {{hash=1453fced6518e7f5d43584218851ee25}{%
+           family={Petrović},
+           familyi={P\bibinitperiod},
+           given={Jovana},
+           giveni={J\bibinitperiod}}}%
       }
-      \list{publisher}{1}{%
-        {John Wiley \& Sons}%
-      }
-      \strng{namehash}{85dba919fdceaad20b2b4009570310cc}
-      \strng{fullhash}{85dba919fdceaad20b2b4009570310cc}
-      \strng{fullhashraw}{85dba919fdceaad20b2b4009570310cc}
-      \strng{bibnamehash}{85dba919fdceaad20b2b4009570310cc}
-      \strng{authorbibnamehash}{85dba919fdceaad20b2b4009570310cc}
-      \strng{authornamehash}{85dba919fdceaad20b2b4009570310cc}
-      \strng{authorfullhash}{85dba919fdceaad20b2b4009570310cc}
-      \strng{authorfullhashraw}{85dba919fdceaad20b2b4009570310cc}
+      \strng{namehash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{fullhash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{fullhashraw}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{bibnamehash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{authorbibnamehash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{authornamehash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{authorfullhash}{a0af13007cdf714c47381cfd09a252b9}
+      \strng{authorfullhashraw}{a0af13007cdf714c47381cfd09a252b9}
+      \field{extraname}{2}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{edition}{2}
-      \field{title}{Integer Programming}
-      \field{year}{2020}
-      \true{nocite}
+      \field{howpublished}{Prezentacija sa predavanja iz predmeta Optimizacioni algoritmi u inženjerstvu, Univerzitet u Beogradu -- Elektrotehnički fakultet}
+      \field{note}{Školska 2025/26. godina}
+      \field{title}{Genetički algoritam}
+      \verb{urlraw}
+      \verb http://mtt.etf.rs/ms/osnovni.optimizacioni.algoritmi.htm
+      \endverb
+      \verb{url}
+      \verb http://mtt.etf.rs/ms/osnovni.optimizacioni.algoritmi.htm
+      \endverb
     \endentry
-    \entry{Sipser2012}{book}{}{}
+    \entry{NumPy}{misc}{}{}
       \name{author}{1}{}{%
-        {{hash=13b9c16a9de2bb891eb8aa2a768eb2a8}{%
-           family={Sipser},
-           familyi={S\bibinitperiod},
-           given={Michael},
-           giveni={M\bibinitperiod}}}%
+        {{hash=5d41e41313a1c6d48282954d2eae2421}{%
+           family={{NumPy Developers}},
+           familyi={N\bibinitperiod}}}%
       }
-      \list{publisher}{1}{%
-        {Cengage Learning}%
-      }
-      \strng{namehash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
-      \strng{fullhash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
-      \strng{fullhashraw}{13b9c16a9de2bb891eb8aa2a768eb2a8}
-      \strng{bibnamehash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
-      \strng{authorbibnamehash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
-      \strng{authornamehash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
-      \strng{authorfullhash}{13b9c16a9de2bb891eb8aa2a768eb2a8}
-      \strng{authorfullhashraw}{13b9c16a9de2bb891eb8aa2a768eb2a8}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \strng{namehash}{5d41e41313a1c6d48282954d2eae2421}
+      \strng{fullhash}{5d41e41313a1c6d48282954d2eae2421}
+      \strng{fullhashraw}{5d41e41313a1c6d48282954d2eae2421}
+      \strng{bibnamehash}{5d41e41313a1c6d48282954d2eae2421}
+      \strng{authorbibnamehash}{5d41e41313a1c6d48282954d2eae2421}
+      \strng{authornamehash}{5d41e41313a1c6d48282954d2eae2421}
+      \strng{authorfullhash}{5d41e41313a1c6d48282954d2eae2421}
+      \strng{authorfullhashraw}{5d41e41313a1c6d48282954d2eae2421}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{edition}{3}
-      \field{title}{Introduction to the Theory of Computation}
-      \field{year}{2012}
-      \true{nocite}
+      \field{title}{NumPy: The fundamental package for scientific computing with Python}
+      \verb{urlraw}
+      \verb https://numpy.org
+      \endverb
+      \verb{url}
+      \verb https://numpy.org
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
