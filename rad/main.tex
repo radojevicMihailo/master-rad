@@ -92,7 +92,7 @@ Zadatak je sledeći. Odrediti koliko jedinica svakog servisa rasporediti na svak
 
 Problem ima jasnu poslovnu interpretaciju. U cloud računarstvu servisi odgovaraju zahtevima korisnika, a računari raznorodnim virtuelnim mašinama; zarada po jedinici tada predstavlja prihod koji provajder ostvaruje od jedne usluge, a vreme izvršavanja vreme zauzeća resursa. U industrijskoj proizvodnji servisi su artikli koji se izrađuju, a računari su proizvodne linije sa različitim performansama. U logistici servisi predstavljaju tipove paketa, a računari su distributivni centri sa različitim kapacitetima. U svakoj od navedenih primena veličina instance varira od desetina do nekoliko hiljada jedinica, a matematička struktura problema je ista, što opravdava razvoj generičkih metoda za rešavanje koje se efikasno skaliraju sa veličinom problema.
 
-Iako je problem konceptualno jednostavan, broj kandidatskih rešenja eksponencijalno raste sa veličinom ulaza. Već za umerene veličine, recimo $100$ servisa i $100$ računara, prostor pretrage prevazilazi mogućnosti naivnih egzaktnih algoritama u prihvatljivom vremenu. Za još veće instance, reda hiljadu servisa i hiljadu računara, komercijalni softverski alati za matematičku optimizaciju mogu pronaći visokokvalitetna rešenja, ali im vreme i memorijski zahtevi značajno rastu. U takvim uslovima stohastičke i metaheurističke metode predstavljaju zanimljivu alternativu: za rešenje koje pronađu ne postoji matematički dokaz optimalnosti, ali se zauzvrat dobijaju fleksibilnost modela i mogućnost upravljanja utrošenim vremenom.
+Iako je problem konceptualno jednostavan, broj kandidatskih rešenja eksponencijalno raste sa veličinom ulaza. Već za umerene veličine, recimo $100$ servisa i $100$ računara, prostor pretrage prevazilazi mogućnosti naivnih algoritama potpune pretrage u prihvatljivom vremenu. Za još veće instance, reda hiljadu servisa i hiljadu računara, komercijalni softverski alati za matematičku optimizaciju mogu pronaći visokokvalitetna rešenja, ali im vreme i memorijski zahtevi značajno rastu. U takvim uslovima stohastičke i metaheurističke metode predstavljaju zanimljivu alternativu: za rešenje koje pronađu ne postoji matematički dokaz optimalnosti, ali se zauzvrat dobijaju fleksibilnost modela i mogućnost upravljanja utrošenim vremenom.
 
 \subsection{Matematička formulacija}
 
@@ -129,9 +129,9 @@ U razmatranom radu pretpostavlja se linearni model, što je opravdano kako sa st
 
 \subsection{Celobrojno linearno programiranje i softverski alat HiGHS}
 
-Celobrojno linearno programiranje je grana matematičkog programiranja koja se bavi linearnim funkcijama cilja i ograničenjima uz dodatne uslove celobrojnosti promenljivih. Iako je linearno programiranje u kontinualnoj relaksaciji polinomski rešivo simpleks metodom ili metodom unutrašnje tačke \cite{OlcanPetrovicLP}, dodavanje uslova celobrojnosti čini problem NP-teškim. Softverski alati za matematičku optimizaciju (eng. \textit{mathematical optimization software tools}) koji egzaktno rešavaju ILP probleme zasnovani su na metodama grananja i ograničavanja (eng. \textit{branch-and-bound}), grananja i odsecanja (eng. \textit{branch-and-cut}) i drugim sofisticiranim tehnikama koje eksploatišu strukturu linearne relaksacije za eliminaciju velikih delova prostora pretrage \cite{Wolsey2020}.
+Celobrojno linearno programiranje je grana matematičkog programiranja koja se bavi linearnim funkcijama cilja i ograničenjima uz dodatne uslove celobrojnosti promenljivih. Iako je linearno programiranje u kontinualnoj relaksaciji polinomski rešivo simpleks metodom ili metodom unutrašnje tačke \cite{OlcanPetrovicLP}, dodavanje uslova celobrojnosti čini problem NP-teškim. Softverski alati za matematičku optimizaciju (eng. \textit{mathematical optimization software tools}) koji rešavaju ILP probleme zasnovani su na metodama grananja i ograničavanja (eng. \textit{branch-and-bound}), grananja i odsecanja (eng. \textit{branch-and-cut}) i drugim sofisticiranim tehnikama koje eksploatišu strukturu linearne relaksacije za eliminaciju velikih delova prostora pretrage \cite{Wolsey2020}.
 
-Među dostupnim open-source alatima, HiGHS \cite{HuangfuHall2018, HiGHS} se izdvaja kao jedan od najefikasnijih za probleme mešovitog celobrojnog linearnog programiranja. HiGHS implementira napredne tehnike pretprocesiranja, sečenje ravni (eng. \textit{cutting planes}) i heuristike za pronalaženje dopustivih rešenja. Njegova prednost je dostupnost preko otvorenih licenci, što omogućava akademsku i industrijsku upotrebu bez restrikcija. U ovom radu HiGHS je korišćen kao primarni egzaktni alat za sve tri veličine instanci.
+Među dostupnim open-source alatima, HiGHS \cite{HuangfuHall2018, HiGHS} se izdvaja kao jedan od najefikasnijih za probleme mešovitog celobrojnog linearnog programiranja. HiGHS implementira napredne tehnike pretprocesiranja, sečenje ravni (eng. \textit{cutting planes}) i heuristike za pronalaženje dopustivih rešenja. Njegova prednost je dostupnost preko otvorenih licenci, što omogućava akademsku i industrijsku upotrebu bez restrikcija. U ovom radu HiGHS je korišćen kao primarni alat za matematičku optimizaciju za sve tri veličine instanci.
 
 Pored HiGHS-a, postoje i komercijalni alati, među kojima se ističu Gurobi \cite{Gurobi2024}, CPLEX i Mosek. Ovi alati često postižu bolja vremena izvršavanja za izuzetno velike instance, ali zahtevaju plaćene licence. U ovom radu Gurobi je korišćen preko NEOS servera radi potvrde referentnih vrednosti dobijenih HiGHS-om. Razlika između rezultata HiGHS-a i Gurobija je u svim ispitanim instancama bila zanemarljiva, što potvrđuje pouzdanost izabranog open-source alata.
 
@@ -139,9 +139,9 @@ Model ILP-a u ovom radu implementiran je u programskom jeziku Python uz pomoć b
 
 \subsection{Stohastički algoritmi za probleme velikih dimenzija}
 
-Egzaktne metode zasnovane na ILP-u efikasno rešavaju male i srednje instance, ali se za veoma velike instance suočavaju sa ozbiljnim vremenskim i memorijskim ograničenjima. Linearna relaksacija problema sa milion promenljivih i nekoliko hiljada ograničenja zahteva značajne resurse, a faza grananja i ograničavanja se može znatno usporiti u slučajevima sa razgranatim drvetom pretrage. Pored toga, u dinamičkim scenarijima u kojima se ulazni podaci često menjaju, ponovno rešavanje punog ILP modela posle svake promene ulaza nije ekonomski opravdano.
+Metode zasnovane na ILP-u efikasno rešavaju male i srednje instance, ali se za veoma velike instance suočavaju sa ozbiljnim vremenskim i memorijskim ograničenjima. Linearna relaksacija problema sa milion promenljivih i nekoliko hiljada ograničenja zahteva značajne resurse, a faza grananja i ograničavanja se može znatno usporiti u slučajevima sa razgranatim drvetom pretrage. Pored toga, u dinamičkim scenarijima u kojima se ulazni podaci često menjaju, ponovno rešavanje punog ILP modela posle svake promene ulaza nije ekonomski opravdano.
 
-Kao odgovor na ove izazove razvijene su stohastičke i metaheurističke metode. Karakteristika ovih metoda je da koriste slučajnost kao mehanizam za istraživanje prostora rešenja i da po prirodi nisu garantovano optimalne, ali za mnoge probleme daju visokokvalitetna rešenja u kraćem vremenu od egzaktnih metoda na velikim instancama. Da li se ta prednost ostvaruje zavisi od konkretnog problema i instance, što je jedno od pitanja koja ovaj rad eksperimentalno ispituje. Stohastičke metode su posebno korisne kada egzaktni pristup nije primenljiv ili kada se rešenja iz prethodnih instanci mogu iskoristiti kao početna inicijalizacija.
+Kao odgovor na ove izazove razvijene su stohastičke i metaheurističke metode. Karakteristika ovih metoda je da koriste slučajnost kao mehanizam za istraživanje prostora rešenja i da po prirodi nisu garantovano optimalne, ali za mnoge probleme daju visokokvalitetna rešenja u kraćem vremenu od ILP metoda na velikim instancama. Da li se ta prednost ostvaruje zavisi od konkretnog problema i instance, što je jedno od pitanja koja ovaj rad eksperimentalno ispituje. Stohastičke metode su posebno korisne kada ILP pristup nije primenljiv ili kada se rešenja iz prethodnih instanci mogu iskoristiti kao početna inicijalizacija.
 
 Najjednostavnija stohastička metoda je slučajna pretraga (eng. \textit{random search}), koja generiše $N$ slučajnih dopustivih rešenja i vraća najbolje. U ovom radu svako slučajno generisano rešenje prolazi kroz istu proceduru popravke kao i rešenja genetičkog algoritma (odeljak \ref{sec:popravka}), čime postaje dopustivo i lokalno popravljeno; taj korak treba imati u vidu pri tumačenju rezultata, jer deo kvaliteta slučajne pretrage potiče od same popravke. Iako trivijalna, ova metoda služi kao važna kontrolna grupa za poređenje sa složenijim algoritmima. Rezultat složenijeg algoritma može se smatrati značajnim samo ako jasno nadmašuje slučajnu pretragu pri istom broju evaluacija funkcije cilja.
 
@@ -151,7 +151,7 @@ U ovom radu, kao predstavnik stohastičkih metoda za rešavanje razmatranog prob
 
 \subsection{Cilj rada i doprinosi}
 
-Cilj ovog rada je da se za navedeni problem maksimizacije zarade formuliše genetički algoritam koji efikasno pronalazi visokokvalitetna rešenja i da se njegove performanse uporede sa egzaktnim alatom HiGHS i slučajnom pretragom. Pored toga, cilj je i da se eksperimentalno odredi granica primenljivosti egzaktnog pristupa i da se identifikuju situacije u kojima stohastička metaheuristika postaje neophodna ili poželjna.
+Cilj ovog rada je da se za navedeni problem maksimizacije zarade formuliše genetički algoritam koji efikasno pronalazi visokokvalitetna rešenja i da se njegove performanse uporede sa alatom HiGHS i slučajnom pretragom. Pored toga, cilj je i da se eksperimentalno odredi granica primenljivosti ILP pristupa i da se identifikuju situacije u kojima stohastička metaheuristika postaje neophodna ili poželjna.
 
 Konkretni doprinosi rada su sledeći. Najpre, predložena je formulacija problema kao varijanta generalizovanog problema dodeljivanja sa celobrojnim odlukama. Zatim je implementiran genetički algoritam sa specijalizovanom procedurom popravke koja integriše pohlepne lokalne heuristike i garantuje dopustivost svakog kandidatskog rešenja. Za selekciju su korišćeni turnirska selekcija i elitizam, a pri dužoj stagnaciji najbolje vrednosti deo najlošijih hromozoma zamenjuje se novim slučajnim jedinkama (injekcija raznolikosti), čime se predupređuje prerana konvergencija. Implementacija je realizovana u dva programska jezika, Python i C++, kako bi se obezbedila čitljivost referentne verzije i performansa na velikim instancama. Najzad, sprovedena je sistematska eksperimentalna evaluacija na tri reprezentativne veličine problema, sa više pokretanja po konfiguraciji, što obezbeđuje statističku stabilnost zaključaka.
 
@@ -173,7 +173,7 @@ Verzija genetičkog algoritma predstavljena u ovom radu sadrži dva specijalizov
 
 Hromozom je predstavljen matricom $X \in \mathbb{Z}_{\geq 0}^{m \times n}$ koja direktno opisuje broj jedinica svakog servisa na svakom računaru. Genotip i fenotip su identični, što izbegava potrebu za dekodiranjem koje bi inače bilo prisutno kod indirektnih reprezentacija. Cena ovog izbora je obaveza aktivne kontrole dopustivosti, koja se postiže pozivom procedure popravke posle svake izmene hromozoma.
 
-Kao mera kvaliteta hromozoma koristi se direktno funkcija cilja problema:
+Kao mera kvaliteta hromozoma koristi se funkcija cilja:
 \[
     f(X) = \sum_{i=1}^{m}\sum_{j=1}^{n} p_{ij} \, x_{ij}.
 \]
@@ -308,7 +308,7 @@ Problem male dimenzije, sa 10 servisa i 10 računara, korišćen je kao verifika
 
 \subsubsection{Rešenje alatom HiGHS}
 
-Optimalna vrednost dobijena alatom HiGHS iznosi 89847 dinara. Vreme izvršavanja je manje od jedne sekunde, čak i sa uključenim pretprocesiranjem. Gurobi preko NEOS servera potvrđuje istu vrednost. Time se utvrđuje referentna vrednost optimuma, prema kojoj se mere svi ostali algoritmi.
+Optimalna vrednost dobijena alatom HiGHS iznosi 89847 dinara. Vreme izvršavanja je manje od jedne sekunde, čak i sa uključenim pretprocesiranjem. Gurobi preko NEOS servera potvrđuje istu vrednost. Time se utvrđuje referentna vrednost optimuma, prema kojoj se mere svi ostali algoritmi. U nastavku rada, za svaku instancu, \emph{optimumom} se naziva najbolja vrednost funkcije cilja koju je pronašao alat HiGHS, a \emph{procenat optimuma} nekog algoritma definiše se kao odnos najbolje vrednosti funkcije cilja koju taj algoritam postiže preko svih pokretanja i optimuma, izražen u procentima. Kada se procenat računa u odnosu na prosečnu ili medijalnu vrednost preko više pokretanja, to je posebno naznačeno.
 
 \subsubsection{Rešenje genetičkim algoritmom}
 
@@ -324,7 +324,7 @@ Kao referentna metoda korišćena je slučajna pretraga sa 100000 evaluacija, u 
 
 \subsubsection{Poređenje algoritama}
 
-Tabela \ref{tab:r10} prikazuje rezultate različitih algoritama. U koloni \textit{Procenat opt.} prikazan je odnos najbolje vrednosti koju algoritam pronalazi i optimalne vrednosti dobijene alatom HiGHS, izražen u procentima.
+Tabela \ref{tab:r10} prikazuje rezultate različitih algoritama. Kolona \textit{Najbolji} sadrži najbolju vrednost funkcije cilja preko svih pokretanja, a kolona \textit{Procenat opt.} procenat optimuma, definisan u odeljku o rešenju alatom HiGHS.
 
 \begin{table}[H]
 \centering
@@ -347,9 +347,11 @@ Prosečna standardna devijacija genetičkog algoritma preko 15 pokretanja kreće
 
 Razlog za relativno visok kvalitet slučajne pretrage od 83,8\% leži u činjenici da generisana rešenja prolaze kroz proceduru popravke, koja sadrži pohlepni korak popunjavanja. Time se još jednom potvrđuje da je dobar deo kvaliteta rešenja zasluga informisane konstrukcije, a ne same pretrage.
 
-Što se tiče vremena izvršavanja, alat HiGHS i genetički algoritam su u istom redu veličine za ovu instancu (oba ispod jedne sekunde), pa za male instance nema razloga ne koristiti egzaktni pristup. Slučajna pretraga je nominalno najbrža, ali daje znatno lošije rezultate.
+Što se tiče vremena izvršavanja, alat HiGHS i genetički algoritam su u istom redu veličine za ovu instancu (oba ispod jedne sekunde), pa za male instance nema razloga ne koristiti ILP pristup. Slučajna pretraga je nominalno najbrža, ali daje znatno lošije rezultate.
 
-Interesantno je posmatrati odnos veličine populacije i broja generacija u dva različita slučaja. Tabela \ref{tab:r10-fixG} prikazuje rezultate kada je broj generacija fiksiran na $G = 100$, a veličina populacije raste. Vidi se monotoni rast najboljeg i medijanskog rešenja sa rastom populacije: od 96,9\% optimuma za $P = 100$ do 98,8\% za $P = 2000$. Razlog je u tome da pri fiksnom broju generacija ukupan broj evaluacija raste sa populacijom, pa sa većom populacijom genetički algoritam nalazi bolje rešenje.
+Interesantno je posmatrati odnos veličine populacije i broja generacija u dva različita režima: pri fiksnom ukupnom broju evaluacija i pri fiksnom broju generacija. Prvi režim prikazan je u tabeli \ref{tab:r10}, u kojoj je ukupan broj evaluacija fiksiran na 100000 (proizvod $P \cdot G$). Najbolji rezultati u proseku postižu se pri manjim populacijama sa više generacija: konfiguracija $(200, 500)$ ima najbolji pojedinačni rezultat 88636 dinara (98,7\%), dok konfiguracija $(2000, 50)$ pri istom broju evaluacija ostaje na 98,2\%. Ovaj rezultat je značajan jer pokazuje da pri ograničenom broju evaluacija nije isplativo trošiti evaluacije na održavanje velike populacije ako se time žrtvuje broj generacija. Manja populacija sa više generacija dozvoljava više iteracija selekcije, ukrštanja i mutacije nad istim genetičkim materijalom, čime se intenzivnije eksploatišu obećavajuće oblasti prostora pretrage.
+
+Drugi režim, sa fiksnim brojem generacija, prikazan je u tabeli \ref{tab:r10-fixG}: broj generacija fiksiran je na $G = 100$, a veličina populacije raste. Trend je suprotan trendu iz tabele \ref{tab:r10}: vidi se monotoni rast najboljeg i medijanskog rešenja sa rastom populacije, od 96,9\% optimuma za $P = 100$ do 98,8\% za $P = 2000$. Razlog je u tome da pri fiksnom broju generacija ukupan broj evaluacija raste sa populacijom, pa sa većom populacijom genetički algoritam nalazi bolje rešenje.
 
 \begin{table}[H]
 \centering
@@ -366,8 +368,6 @@ GA (2000, 100)  & 88746 & 88544 & 0,09  & 98,8 \\ \hline
 \caption{Rezultati genetičkog algoritma za fiksni broj generacija $G = 100$ uz različite veličine populacije.}
 \label{tab:r10-fixG}
 \end{table}
-
-Suprotno tome, ako se fiksira ukupan broj evaluacija na 100000 (proizvod $P \cdot G$), trend se obrće. Kao što je vidljivo u tabeli \ref{tab:r10}, najbolji rezultati u proseku se postižu pri manjim populacijama sa više generacija. Konfiguracija $(200, 500)$ ima najbolji pojedinačni rezultat 88636 dinara (98,7\%), dok konfiguracija $(2000, 50)$ pri istom broju evaluacija ostaje na 98,2\%. Ovaj rezultat je značajan jer pokazuje da pri ograničenom broju evaluacija nije isplativo trošiti evaluacije na održavanje velike populacije ako se time žrtvuje broj generacija. Manja populacija sa više generacija dozvoljava više iteracija selekcije, ukrštanja i mutacije nad istim genetičkim materijalom, čime se intenzivnije eksploatišu obećavajuće oblasti prostora pretrage.
 
 Ako se velikim populacijama dopusti više generacija (i samim tim veći broj evaluacija), rezultati nastavljaju da se popravljaju, kao što prikazuje tabela \ref{tab:r10-bigP}. Konfiguracija $(2000, 500)$ sa milion evaluacija postiže 99,1\% optimuma, dok $(1000, 1000)$ dostiže 99,0\%. Time se pokazuje da su veće populacije korisne samo ako im se obezbedi dovoljno generacija, jer u suprotnom dodatna raznolikost ne stiže da se iskoristi.
 
@@ -405,14 +405,14 @@ Slika \ref{fig:conv-10x10-linear} prikazuje krivu konvergencije u linearnoj skal
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{slike/conv-10x10-linear.pdf}
-\caption{Kumulativni maksimum GA za problem male dimenzije, linearna skala (populacija 1000, 100 generacija, 30 elitnih; 15 pokretanja i srednja kriva).}
+\caption{Kumulativni maksimum GA za problem male dimenzije, linearna skala (populacija 1000, 100 generacija, 30 elitnih; 15 pokretanja i srednji kumulativni maksimum).}
 \label{fig:conv-10x10-linear}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{slike/conv-10x10-loglog.pdf}
-\caption{Kumulativni maksimum GA za problem male dimenzije, log-log skala (15 pokretanja i srednja kriva).}
+\caption{Kumulativni maksimum GA za problem male dimenzije, log-log skala (15 pokretanja i srednji kumulativni maksimum).}
 \label{fig:conv-10x10-loglog}
 \end{figure}
 
@@ -437,10 +437,11 @@ Optimalna vrednost dobijena alatom HiGHS iznosi 2023188 dinara, sa vremenom izvr
 
 \subsubsection{Rešenje genetičkim algoritmom}
 
-Zbog značajno većeg prostora pretrage, za problem srednje dimenzije koristi se C++ implementacija genetičkog algoritma, koja omogućava rad sa znatno većim populacijama u prihvatljivom vremenu. Testirano je više konfiguracija, sa veličinama populacije $P \in \{5000, 10000, 100000, 150000, 200000\}$:
+Zbog značajno većeg prostora pretrage, za problem srednje dimenzije koristi se C++ implementacija genetičkog algoritma, koja omogućava rad sa znatno većim populacijama u prihvatljivom vremenu. Testirano je više konfiguracija, sa veličinama populacije $P \in \{5000, 10000, 50000, 100000, 150000, 200000\}$:
 \begin{itemize}
     \item $P = 5000$, $G = 100$, $E = 50$, turnir $k = 5$, $p_m = 0{,}30$,
     \item $P = 10000$, $G = 100$, $E = 500$, turnir $k = 10$, $p_m = 0{,}20$,
+    \item $P = 50000$, $G = 200$, $E = 2500$, turnir $k = 15$, $p_m = 0{,}15$,
     \item $P = 100000$, $G = 100$, $E = 5000$, turnir $k = 15$, $p_m = 0{,}15$,
     \item $P = 150000$, $G = 200$, $E = 7500$, turnir $k = 15$, $p_m = 0{,}15$,
     \item $P = 200000$, $G = 200$, $E = 10000$, turnir $k = 15$, $p_m = 0{,}15$.
@@ -449,7 +450,7 @@ Verovatnoća ukrštanja je $p_c = 0{,}8$ u svim konfiguracijama. Broj pokretanja
 
 \subsubsection{Poređenje algoritama}
 
-Tabela \ref{tab:r100} prikazuje rezultate.
+Tabela \ref{tab:r100} prikazuje rezultate. Kolona \textit{Najbolji} sadrži najbolju vrednost funkcije cilja preko svih pokretanja date konfiguracije, a kolona \textit{Procenat opt.} predstavlja odnos te najbolje vrednosti i optimuma dobijenog alatom HiGHS (2023188 dinara), izražen u procentima, u skladu sa definicijom iz odeljka o problemu male dimenzije.
 
 \begin{table}[H]
 \centering
@@ -460,7 +461,8 @@ HiGHS (ILP) & 2023188 & --      & 7,7   & 100,0 \\ \hline
 Slučajna pretraga ($10^7$ ev.) & 1003308 & -- & 1761 & 49,6 \\ \hline
 GA (5000, 100)     & 1984502 & 1981686 & 16   & 98,1 \\ \hline
 GA (10000, 100)    & 1989039 & 1985559 & 30   & 98,3 \\ \hline
-GA (100000, 100)   & 1996732 & 1995536 & 456  & 98,7 \\ \hline
+GA (50000, 200)    & 1994685 & 1993336 & 311  & 98,6 \\ \hline
+GA (100000, 100)   & 1997287 & 1996497 & 504  & 98,7 \\ \hline
 GA (150000, 200)   & 1997917 & 1997704 & 1383 & 98,8 \\ \hline
 GA (200000, 200)   & 1999707 & 1999503 & 1779 & 98,8 \\ \hline
 \end{tabular}
@@ -472,7 +474,7 @@ Pri ovoj veličini, alat HiGHS i dalje pronalazi optimum u svega nekoliko sekund
 
 Posebno je upečatljiv rezultat slučajne pretrage. Sa deset miliona evaluacija, što je oko dvadeset puta više nego što troši najmanja konfiguracija genetičkog algoritma, slučajna pretraga dostiže svega 49,6\% optimuma. Za razliku od male instance, gde je razlika između slučajne pretrage i genetičkog algoritma iznosila oko 15 procentnih poena, ovde ona prelazi 48 procentnih poena. Kriva slučajne pretrage na slici \ref{fig:compare-100x100} praktično je ravna: najbolja vrednost pronađena među prvih sto uzoraka gotovo se ne poboljšava ni posle deset miliona uzoraka. Ovo je očekivano ponašanje neinformisane pretrage: verovatnoća da nezavisno izvučen uzorak nadmaši dotadašnji maksimum opada sa brojem uzoraka, pa kvalitet raste tek logaritamski sporo. Sa rastom dimenzije problema ovaj efekat postaje još izraženiji, jer udeo visokokvalitetnih rešenja u prostoru pretrage eksponencijalno opada.
 
-Vidljiv je monotoni rast kvaliteta sa rastom populacije: od 98,1\% optimuma za $P = 5000$ do 98,8\% za $P = 200000$, uz istovremeno smanjenje standardne devijacije sa 2534 na 204 dinara. Veće populacije daju i bolji i stabilniji rezultat, ali po ceni značajnog rasta vremena izvršavanja: prelazak sa $P = 100000$ na $P = 200000$ poboljšava prosečni rezultat za samo 0,2\%, dok vreme raste skoro četiri puta.
+Vidljiv je monotoni rast kvaliteta sa rastom populacije: od 98,1\% optimuma za $P = 5000$ do 98,8\% za $P = 200000$, uz istovremeno smanjenje standardne devijacije sa 2534 na 204 dinara. Veće populacije daju i bolji i stabilniji rezultat, ali po ceni značajnog rasta vremena izvršavanja: prelazak sa $P = 100000$ na $P = 200000$ poboljšava prosečni rezultat za samo 0,15\%, dok vreme raste oko tri i po puta.
 
 Međutim, treba imati u vidu da HiGHS operiše na unapred poznatim ulazima, dok je genetički algoritam fleksibilniji kada se ulazi često menjaju ili kada postoji veliki broj scenarija koje treba evaluirati u kratkom roku. U industrijskoj praksi često se sreću scenariji u kojima se baza ulaznih instanci menja dnevno, pa se pretkalkulisana rešenja brzo zastareju i potrebna je metoda koja može da odgovori na nove ulaze za nekoliko sekundi.
 
@@ -482,20 +484,16 @@ Slika \ref{fig:compare-100x100} prikazuje uporedne krive srednjih kumulativnih m
 
 \begin{figure}[H]
 \centering
-% PODACI POSTOJE -- iscrtati uporedne krive vise konfiguracija:
-%   python3 compare-setups.py \
-%     rezultati-100x100/svi-podaci/ga-cpp-convergence-5000-100-50.csv \
-%     rezultati-100x100/svi-podaci/ga-cpp-convergence-10000-100-500.csv \
-%     rezultati-100x100/svi-podaci/ga-cpp-convergence-100000-100-5000.csv \
-%     rezultati-100x100/svi-podaci/ga-cpp-convergence-150000-200-7500.csv \
-%     rezultati-100x100/svi-podaci/ga-cpp-convergence-200000-200-10000.csv \
-%     --output slike/compare-100x100.pdf
+% Regenerisanje: obuhvata i konfiguraciju (50000, 200) i slucajnu pretragu;
+% krive su srednji kumulativni maksimumi preko svih pokretanja po CSV-u
+% (svi ga-cpp-convergence-*.csv + random-cpp-convergence-10000000eval.csv
+%  iz rezultati-100x100/svi-podaci/).
 \includegraphics[width=\textwidth]{slike/compare-100x100.pdf}
 \caption{Poređenje krivih srednjih kumulativnih maksimuma za problem srednje dimenzije (2 do 11 pokretanja po konfiguraciji).}
 \label{fig:compare-100x100}
 \end{figure}
 
-Diskusija krive konvergencije pokazuje isti karakterističan profil kao i kod male instance, ali sa bitno drugačijom početnom tačkom. Dok kod male instance procedura popravke već početnu populaciju vodi do oko 80\% optimuma, kod srednje instance najbolji hromozom početne populacije dostiže svega oko 49\% optimuma (na primer, 995553 dinara za konfiguraciju sa $P = 5000$). Genetički algoritam zatim u prvih 10 do 20 generacija izuzetno brzo raste, jer se kroz selekciju eliminišu najlošiji hromozomi iz početne populacije, nastavlja sa nešto slabijim intenzitetom dok evolucija kombinuje gradeće blokove iz najboljih hromozoma, i konačno ulazi u dugu fazu finih poboljšanja, u kojoj svaka generacija donosi mali ali stabilan dobitak. Na ovoj instanci, dakle, evolutivna komponenta podiže kvalitet za skoro 50 procentnih poena, što pokazuje da se njen doprinos ne može svesti na fino doterivanje rešenja koje je proizvela popravka. Detaljnija analiza početnog kvaliteta po instancama data je u poglavlju \ref{sec:analiza}.
+Diskusija krive konvergencije pokazuje isti karakterističan profil kao i kod male instance, ali sa bitno drugačijom početnom tačkom. Dok kod male instance procedura popravke već početnu populaciju vodi do oko 80\% optimuma, kod srednje instance najbolji hromozom početne populacije dostiže svega oko 49\% optimuma (na primer, 995553 dinara za konfiguraciju sa $P = 5000$). Vrednost funkcije cilja zatim u prvih 10 do 20 generacija izuzetno brzo raste, jer se kroz selekciju eliminišu najlošiji hromozomi iz početne populacije, nastavlja sa nešto slabijim intenzitetom dok evolucija kombinuje gradeće blokove iz najboljih hromozoma, i konačno ulazi u dugu fazu finih poboljšanja, u kojoj svaka generacija donosi mali ali stabilan dobitak. Na ovoj instanci, dakle, evolutivna komponenta podiže kvalitet za skoro 50 procentnih poena, što pokazuje da se njen doprinos ne može svesti na fino doterivanje rešenja koje je proizvela popravka. Detaljnija analiza uticaja početne populacije po instancama data je u poglavlju \ref{sec:analiza}.
 
 Slika \ref{fig:conv-100x100-linear} prikazuje krivu konvergencije u linearnoj skali, dok slika \ref{fig:conv-100x100-loglog} prikazuje istu krivu u logaritamskoj skali po obe ose. Log-log skala i ovde pokazuje približno linearan trend u srednjem opsegu generacija, što ukazuje da brzina konvergencije sledi polinomski zakon, sa eksponentom oko 0,4 (manjim nego kod male instance, što je očekivano zbog većeg prostora pretrage).
 
@@ -505,7 +503,7 @@ Slika \ref{fig:conv-100x100-linear} prikazuje krivu konvergencije u linearnoj sk
 %   python3 plot-convergence.py rezultati-100x100/svi-podaci/ga-cpp-convergence-5000-100-50.csv
 %   -> daje ...-linear.svg i ...-loglog.svg; konvertuj u slike/conv-100x100-linear.pdf
 \includegraphics[width=\textwidth]{slike/conv-100x100-linear.pdf}
-\caption{Kumulativni maksimum GA za problem srednje dimenzije, linearna skala (konfiguracija $(5000, 100)$; 11 pokretanja i srednja kriva).}
+\caption{Kumulativni maksimum GA za problem srednje dimenzije, linearna skala (konfiguracija $(5000, 100)$; 11 pokretanja i srednji kumulativni maksimum).}
 \label{fig:conv-100x100-linear}
 \end{figure}
 
@@ -515,13 +513,24 @@ Slika \ref{fig:conv-100x100-linear} prikazuje krivu konvergencije u linearnoj sk
 %   python3 plot-convergence.py rezultati-100x100/svi-podaci/ga-cpp-convergence-5000-100-50.csv
 %   -> ...-loglog.svg; konvertuj u slike/conv-100x100-loglog.pdf
 \includegraphics[width=\textwidth]{slike/conv-100x100-loglog.pdf}
-\caption{Kumulativni maksimum GA za problem srednje dimenzije, log-log skala (11 pokretanja i srednja kriva).}
+\caption{Kumulativni maksimum GA za problem srednje dimenzije, log-log skala (11 pokretanja i srednji kumulativni maksimum).}
 \label{fig:conv-100x100-loglog}
 \end{figure}
 
+Kao i kod male instance, uticaj veličine populacije pri istom ukupnom broju evaluacija ispitan je poređenjem dve konfiguracije sa po $10^7$ evaluacija: populacija 50000 sa 200 generacija (2500 elitnih) i populacija 100000 sa 100 generacija (5000 elitnih). Slika \ref{fig:compare-100x100-pop} prikazuje krive srednjih kumulativnih maksimuma obe konfiguracije, usrednjene preko 5 pokretanja po konfiguraciji, sa osom evaluacija u logaritamskoj skali.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{slike/compare-100x100-pop.pdf}
+\caption{Poređenje krivih srednjih kumulativnih maksimuma za dve konfiguracije sa istim brojem od $10^7$ evaluacija: populacija 50000 (200 generacija, 2500 elitnih) i populacija 100000 (100 generacija, 5000 elitnih); 5 pokretanja po konfiguraciji.}
+\label{fig:compare-100x100-pop}
+\end{figure}
+
+Ponavlja se obrazac uočen na maloj instanci. Konfiguracija sa manjom populacijom drži prednost tokom najvećeg dela pretrage: pri milion evaluacija dostiže oko 1,96 miliona dinara, dok je veća populacija tada na oko 1,87 miliona. Veća populacija je, međutim, prestiže u završnici, između $5 \cdot 10^6$ i $10^7$ evaluacija, i na kraju izvršavanja dostiže veću prosečnu vrednost funkcije cilja (1996497 naspram 1993336 dinara, odnosno 98,7\% naspram 98,5\% optimuma u proseku), uz bolji najgori slučaj preko 5 pokretanja (1995665 naspram 1992443 dinara). Veća genetička raznolikost, dakle, i na srednjoj instanci podiže konačno dostignuti maksimum, po ceni sporijeg napretka u ranoj i srednjoj fazi pretrage.
+
 \subsection{Problem velike dimenzije}
 
-Problem velike dimenzije, sa 1000 servisa i 1000 računara, predstavlja granicu primenljivosti egzaktnog pristupa u uslovima ograničenih resursa. Veličina linearnog programa je milion promenljivih i 2000 ograničenja. Memorijski zahtevi alata značajno rastu, kao i vreme izvršavanja.
+Problem velike dimenzije, sa 1000 servisa i 1000 računara, predstavlja granicu primenljivosti ILP pristupa u uslovima ograničenih resursa. Veličina linearnog programa je milion promenljivih i 2000 ograničenja. Memorijski zahtevi alata značajno rastu, kao i vreme izvršavanja.
 
 \subsubsection{Rešenje alatom HiGHS}
 
@@ -533,7 +542,7 @@ Za problem velike dimenzije, Python implementacija postaje preskupa, pa se koris
 
 \subsubsection{Poređenje algoritama}
 
-Tabela \ref{tab:r1000} prikazuje rezultate.
+Tabela \ref{tab:r1000} prikazuje rezultate. Kolona \textit{Najbolji} sadrži najbolju vrednost funkcije cilja preko svih pokretanja date konfiguracije, a kolona \textit{Procenat opt.} predstavlja odnos te najbolje vrednosti i optimuma dobijenog alatom HiGHS (20307561 dinara), izražen u procentima.
 
 \begin{table}[H]
 \centering
@@ -557,7 +566,7 @@ Poređenje konfiguracija genetičkog algoritma pokazuje da kvalitet rešenja ras
 
 Rezultat slučajne pretrage zaslužuje posebnu pažnju. Sa dva miliona evaluacija i ukupnim vremenom od 38214 sekundi (oko 10,6 sati, tri puta duže od referentne konfiguracije genetičkog algoritma), slučajna pretraga dostiže 17864312 dinara, odnosno 88{,}0\% optimuma. Pri tome je najbolja vrednost među prvih 20000 uzoraka već iznosila 17854707 dinara: dodatnih 1,98 miliona evaluacija donelo je poboljšanje od svega 0,05\%. Ovaj plato je posebno informativan zato što se najbolja jedinka početne populacije genetičkog algoritma, koja se generiše identičnim postupkom (slučajno rešenje propušteno kroz proceduru popravke), nalazi na praktično istoj vrednosti od oko 17,85 miliona dinara. Sav napredak genetičkog algoritma iznad 88\% optimuma potiče, dakle, isključivo od evolutivnih operatora, a ne od pukog broja uzoraka.
 
-Zanimljivo je uporediti algoritme i pri jednakom raspoloživom vremenu. Jedna generacija referentne konfiguracije traje oko 123 sekunde, pa za vreme za koje HiGHS reši ceo problem do dokazane optimalnosti (oko 185 sekundi) genetički algoritam stigne da obradi tek jednu do dve generacije i nalazi se na oko 88--89\% optimuma. Do svojih konačnih 97\% genetički algoritam dolazi tek posle više sati. Ovo pokazuje da na ispitanoj instanci metaheuristika nema prednost ni u režimu ograničenog vremena; njena potencijalna prednost leži u fleksibilnosti modela i u scenarijima u kojima egzaktni pristup nije primenljiv.
+Zanimljivo je uporediti algoritme i pri jednakom raspoloživom vremenu. Jedna generacija referentne konfiguracije traje oko 123 sekunde, pa za vreme za koje HiGHS reši ceo problem do dokazane optimalnosti (oko 185 sekundi) genetički algoritam stigne da obradi tek jednu do dve generacije i nalazi se na oko 88--89\% optimuma. Do svojih konačnih 97\% genetički algoritam dolazi tek posle više sati. Ovo pokazuje da na ispitanoj instanci metaheuristika nema prednost ni u režimu ograničenog vremena; njena potencijalna prednost leži u fleksibilnosti modela i u scenarijima u kojima ILP pristup nije primenljiv.
 
 Kod ove veličine instance dolaze do izražaja i efekti memorijske hijerarhije. C++ verzija čuva hromozom kao jedan neprekidan niz u memoriji (linearizovana matrica sa rasporedom po redovima), pa se izračunavanje funkcije cilja i procedura popravke svode na sekvencijalne prolaske kroz memoriju, koji dobro koriste keš i hardversko pretpreuzimanje podataka. Predstavljanje hromozoma preko ugnežđenih struktura sa razbacanim alokacijama vodilo bi čestim promašajima keša i osetno dužem vremenu izvršavanja, što je dobro poznat efekat kod algoritama čija je brzina ograničena propusnošću memorije. Pažnja prema niskonivouskim aspektima implementacije zato može biti jednako važna kao algoritamski izbori.
 
@@ -593,14 +602,14 @@ Slike \ref{fig:conv-1000x1000-linear} i \ref{fig:conv-1000x1000-loglog} prikazuj
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{slike/conv-1000x1000-linear.pdf}
-\caption{Kumulativni maksimum GA za problem velike dimenzije, linearna skala (referentna konfiguracija $(15000, 100)$; 6 pokretanja i srednja kriva).}
+\caption{Kumulativni maksimum GA za problem velike dimenzije, linearna skala (referentna konfiguracija $(15000, 100)$; 6 pokretanja i srednji kumulativni maksimum).}
 \label{fig:conv-1000x1000-linear}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{slike/conv-1000x1000-loglog.pdf}
-\caption{Kumulativni maksimum GA za problem velike dimenzije, log-log skala (6 pokretanja i srednja kriva).}
+\caption{Kumulativni maksimum GA za problem velike dimenzije, log-log skala (6 pokretanja i srednji kumulativni maksimum).}
 \label{fig:conv-1000x1000-loglog}
 \end{figure}
 
@@ -616,9 +625,9 @@ Posmatrano u log-log skali, eksponent polinomske zavisnosti je oko 0,3, što je 
 
 Podešavanje je sprovedeno prvenstveno nad dva ključna hiperparametra: veličinom populacije i brojem generacija. Umesto iscrpnog kombinovanja svih vrednosti, korišćene su unapred uparene konfiguracije. Na maloj instanci ispitan je fiksan broj od 100000 evaluacija sa populacijama od 100 do 2000 (od konfiguracije $(100, 1000)$ do $(2000, 50)$), zatim rast populacije pri fiksnom broju generacija $G = 100$, i najzad uvećan broj evaluacija do milion. Na srednjoj instanci ispitane su populacije od 5000 do 200000 sa 100 do 200 generacija, a na velikoj populacije od 8000 do 20000 sa 100 generacija. Ovakav plan omogućava i poređenje pri jednakom broju evaluacija i procenu marginalne korisnosti dodatnih resursa.
 
-Preostala dva hiperparametra skalirana su zajedno sa veličinom populacije. Broj elitnih hromozoma zadavan je kao mali udeo populacije: oko 3\% kod male instance, između 1\% i 5\% kod srednje, a ispod 1\% kod velike instance, gde već i takav udeo čini oko stotinu jedinki. Veličina turnira takođe je vezana za veličinu populacije i kretala se od 4--5 kod malih do 10--20 kod najvećih populacija, jer bi fiksni turnir kod velike populacije davao preslab selekcioni pritisak.
+Preostala dva hiperparametra skalirana su zajedno sa veličinom populacije. Broj elitnih hromozoma zadavan je kao mali udeo populacije: oko 3\% kod male instance, između 1\% i 5\% kod srednje, a ispod 1\% kod velike instance, gde već i takav udeo čini oko stotinu jedinki. Veličina turnira takođe je vezana za veličinu populacije i kretala se od 4--5 kod malih do 10--20 kod najvećih populacija, jer fiksni turnir kod velike populacije daje preslab selekcioni pritisak.
 
-Uticaj veličine populacije najčistije se vidi u režimu fiksnog broja generacija na maloj instanci (tabela \ref{tab:r10-fixG}): rast populacije sa 100 na 500 podiže prosečan rezultat sa 96{,}4\% na 98{,}0\% optimuma, dok svako dalje udvostručavanje donosi još samo oko 0{,}2 do 0{,}3 procentna poena. Broj generacija pokazuje slično zasićenje: pri populaciji 1000 na maloj instanci, produžavanje sa 500 na 1000 generacija više ne donosi merljivo poboljšanje proseka (razlika je unutar statističkog šuma preko 15 pokretanja). Ista zakonitost opadajućih prinosa važi i na srednjoj instanci, gde prelazak sa $P = 100000$ na $P = 200000$ popravlja prosek za svega 0{,}2\%, uz skoro četvorostruko duže vreme. Veličina turnira oko 5 daje najbolje rezultate za male populacije, dok je kod velikih populacija potrebno podići turnir na 15--20 da bi selekcioni pritisak ostao dovoljan; premali turnir smanjuje selekcioni pritisak, a preveliki ga preuveličava i ubrzava konvergenciju, što povećava rizik od zaglavljivanja u lokalnom optimumu. Da nedovoljan turnir realno košta, pokazuje velika instanca: konfiguracija $(10000, 100)$ sa turnirom $k = 10$ daje lošiji prosek od manje konfiguracije $(8000, 100)$ sa turnirom $k = 15$ (tabela \ref{tab:r1000}).
+Uticaj veličine populacije najčistije se vidi u režimu fiksnog broja generacija na maloj instanci (tabela \ref{tab:r10-fixG}): rast populacije sa 100 na 500 podiže prosečan rezultat sa 96{,}4\% na 98{,}0\% optimuma, dok svako dalje udvostručavanje donosi još samo oko 0{,}2 do 0{,}3 procentna poena. Broj generacija pokazuje slično zasićenje: pri populaciji 1000 na maloj instanci, produžavanje sa 500 na 1000 generacija više ne donosi merljivo poboljšanje proseka (razlika je unutar statističkog šuma preko 15 pokretanja). Ista zakonitost opadajućih prinosa važi i na srednjoj instanci, gde prelazak sa $P = 100000$ na $P = 200000$ popravlja prosek za svega 0{,}15\%, uz oko tri i po puta duže vreme. Veličina turnira oko 5 daje najbolje rezultate za male populacije, dok je kod velikih populacija potrebno podići turnir na 15--20 da bi selekcioni pritisak ostao dovoljan; premali turnir smanjuje selekcioni pritisak, a preveliki ga preuveličava i ubrzava konvergenciju, što povećava rizik od zaglavljivanja u lokalnom optimumu. Da nedovoljan turnir realno košta, pokazuje velika instanca: konfiguracija $(10000, 100)$ sa turnirom $k = 10$ daje lošiji prosek od manje konfiguracije $(8000, 100)$ sa turnirom $k = 15$ (tabela \ref{tab:r1000}).
 
 Uticaj stope mutacije ispitan je sistematski na maloj instanci, sa konfiguracijom $(P, G, E, k) = (1000, 100, 30, 5)$, mutacijom jednog gena i po 15 pokretanja za svaku od osam stopa mutacije između $0{,}05$ i $1{,}00$. Rezultati su prikazani u tabeli \ref{tab:mutacija}. Kvalitet monotono raste sa stopom mutacije i ulazi u plato oko $p_m = 0{,}4$ do $0{,}6$, bez degradacije čak i pri $p_m = 1$. Ovakvo ponašanje objašnjava se sadejstvom sa procedurom popravke i elitizmom: mutacija jednog gena je blaga perturbacija čije destruktivne efekte popravka odmah otkloni i rešenje lokalno re-optimizuje, a elitne jedinke su u svakom slučaju zaštićene, pa se mutacija ponaša kao praktično besplatan izvor raznolikosti. Korišćena vrednost $p_m = 0{,}15$ je, prema tome, konzervativan izbor: na maloj instanci nešto više stope daju blago bolje rezultate. Treba, međutim, imati u vidu da ovaj zaključak važi za mutaciju jednog gena; kod C++ konfiguracija za srednju i veliku instancu, gde mutacija menja grupu od 50 gena, destruktivni efekat po događaju je veći, pa je umerena stopa opravdanija. Na manjim populacijama srednje instance stopa je podignuta na 0{,}20 do 0{,}30 kako bi se nadoknadila manja raznolikost populacije.
 
@@ -640,11 +649,11 @@ Stopa mutacije $p_m$ & Prosek & Najbolji & Procenat opt. (prosek) \\ \hline
 \label{tab:mutacija}
 \end{table}
 
-Analizom logova svih pokretanja utvrđeno je i kada se injekcija raznolikosti zaista aktivira. Uslov od 100 uzastopnih generacija bez poboljšanja najbolje vrednosti ispunjava se samo u dugim pokretanjima na maloj instanci: u svih 15 pokretanja konfiguracije $(1000, 1000)$, u 14 od 15 pokretanja konfiguracije $(2000, 500)$ i u 12 od 15 pokretanja konfiguracije $(100, 1000)$, dok se u pokretanjima sa 200 i manje generacija, kao i na srednjoj i velikoj instanci gde se najbolja vrednost pomera gotovo svake generacije, mehanizam nikada ne aktivira. U pokretanjima u kojima je injekcija okinula nije zabeleženo naknadno poboljšanje najbolje vrednosti: ubačene slučajne jedinke startuju daleko ispod elite (oko 80\% naspram oko 99\% optimuma), pa kroz turnirsku selekciju retko dolaze do reprodukcije. Mehanizam je zadržan kao osiguranje od prerane konvergencije u dugim pokretanjima, ali njegov doprinos u sprovedenim eksperimentima nije demonstriran, pa bi njegova sistematska evaluacija (na primer ablacionom studijom) bila korisna dopuna.
+Analizom ispisa svih pokretanja utvrđeno je i kada se injekcija raznolikosti zaista aktivira. Uslov od 100 uzastopnih generacija bez poboljšanja najbolje vrednosti ispunjava se samo u dugim pokretanjima na maloj instanci: u svih 15 pokretanja konfiguracije $(1000, 1000)$, u 14 od 15 pokretanja konfiguracije $(2000, 500)$ i u 12 od 15 pokretanja konfiguracije $(100, 1000)$, dok se u pokretanjima sa 200 i manje generacija, kao i na srednjoj i velikoj instanci gde se najbolja vrednost pomera gotovo svake generacije, mehanizam nikada ne aktivira. U pokretanjima u kojima je injekcija okinula nije zabeleženo naknadno poboljšanje najbolje vrednosti: ubačene slučajne jedinke startuju daleko ispod elite (oko 80\% naspram oko 99\% optimuma), pa kroz turnirsku selekciju retko dolaze do reprodukcije. Mehanizam je zadržan kao osiguranje od prerane konvergencije u dugim pokretanjima, ali njegov doprinos u sprovedenim eksperimentima nije demonstriran, pa bi njegova sistematska evaluacija (na primer ablacionom studijom) bila korisna dopuna.
 
-Posebno je zanimljiva interakcija između veličine populacije i broja generacija pri fiksnom ukupnom broju evaluacija. Pošto je ukupan broj evaluacija proporcionalan proizvodu $P \cdot G$, povećanje jednog parametra pri fiksnom broju evaluacija nužno smanjuje drugi. Eksperimenti pokazuju da, pri jednakom broju evaluacija, manje populacije sa više generacija po pravilu daju nešto bolje konačne vrednosti od velikih populacija sa malo generacija, jer veći broj generacija omogućava više ciklusa selekcije i rekombinacije nad istim genetičkim materijalom. Izuzetak nastaje kod velikih instanci, gde mala populacija ne sadrži dovoljno raznolikosti da pokrije ogroman prostor pretrage, pa je tada potrebno održati veću populaciju i pored manjeg broja generacija. Ova zavisnost objašnjava zašto se preporučena konfiguracija menja sa veličinom instance.
+Posebno je zanimljiva interakcija između veličine populacije i broja generacija pri fiksnom ukupnom broju evaluacija. Pošto je ukupan broj evaluacija proporcionalan proizvodu $P \cdot G$, povećanje jednog parametra pri fiksnom broju evaluacija nužno smanjuje drugi. Eksperimenti pokazuju da odgovor zavisi od raspoloživog budžeta evaluacija. Pri skromnijem budžetu manje populacije sa više generacija daju nešto bolje konačne vrednosti od velikih populacija sa malo generacija (tabela \ref{tab:r10} pri $10^5$ evaluacija), jer veći broj generacija omogućava više ciklusa selekcije i rekombinacije nad istim genetičkim materijalom. Pri velikom budžetu poredak se obrće: na maloj instanci pri $10^6$ i na srednjoj pri $10^7$ evaluacija veća populacija dostiže bolju konačnu vrednost (slike \ref{fig:compare-10x10-pop} i \ref{fig:compare-100x100-pop}), jer manja populacija ranije iscrpi raznolikost, pa dodatne generacije prestanu da donose napredak. Kod velikih instanci potreba za raznolikošću je još izraženija: mala populacija ne sadrži dovoljno raznolikosti da pokrije ogroman prostor pretrage, pa je potrebno održati veću populaciju i pored manjeg broja generacija. Ova zavisnost objašnjava zašto se preporučena konfiguracija menja sa veličinom instance i budžetom evaluacija.
 
-Treba istaći i da podešavanje hiperparametara nije nezavisno od procedure popravke. Na maloj i velikoj instanci popravka već sama po sebi dovodi najbolju jedinku početne populacije na oko 80\%, odnosno 88\% optimuma, pa se uloga evolutivnih operatora tamo svodi prvenstveno na doterivanje preostalih desetak procenata; na srednjoj instanci, međutim, početna populacija dostiže svega oko 49\% optimuma, pa evolutivna komponenta nosi glavninu posla (detaljna analiza data je u odeljku \ref{sec:pocetni-kvalitet}). Rezultati su ipak na svim instancama relativno neosetljivi na umerene promene hiperparametara, što je poželjna osobina u praksi jer smanjuje potrebu za skupim podešavanjem za svaku novu instancu. Robusnost algoritma na izbor hiperparametara tako je delom posledica snage ugrađenih lokalnih heuristika, a delom stabilizujućeg dejstva populacione pretrage same po sebi.
+Treba istaći i da podešavanje hiperparametara nije nezavisno od procedure popravke. Na maloj i velikoj instanci popravka već sama po sebi dovodi najbolju jedinku početne populacije na oko 80\%, odnosno 88\% optimuma, pa se uloga evolutivnih operatora tamo svodi prvenstveno na doterivanje preostalih desetak procenata. Na srednjoj instanci, međutim, početna populacija dostiže svega oko 49\% optimuma, pa evolutivna komponenta nosi glavninu posla (detaljna analiza data je u odeljku \ref{sec:pocetni-kvalitet}). Rezultati su ipak na svim instancama relativno neosetljivi na umerene promene hiperparametara, što je poželjna osobina u praksi jer smanjuje potrebu za skupim podešavanjem za svaku novu instancu. Robusnost algoritma na izbor hiperparametara tako je delom posledica snage ugrađenih lokalnih heuristika, a delom stabilizujućeg dejstva populacione pretrage same po sebi.
 
 \subsection{Poređenje sa slučajnom pretragom}
 
@@ -667,7 +676,7 @@ Za problem male dimenzije, pri identičnom broju od 100000 evaluacija, slučajna
 
 Razlika u kvalitetu posledica je usmerenog istraživanja prostora pretrage kroz selekciju, ukrštanje i elitizam, dok slučajna pretraga ne koristi informacije iz prethodnih iteracija: verovatnoća da novi nezavisni uzorak nadmaši dotadašnji maksimum opada sa brojem uzoraka, pa njena kriva kumulativnog maksimuma raste tek logaritamski sporo. Posmatrano u apsolutnom iznosu na maloj instanci, u najboljem pokretanju slučajna pretraga ostavlja oko 14500 dinara neiskorišćeno, dok genetički algoritam dostiže razliku manju od hiljadu dinara; na velikoj instanci razlika između slučajne pretrage i genetičkog algoritma iznosi oko 1,8 miliona dinara po planiranom periodu. Time se opravdava veći algoritamski trud kod razvoja genetičkog algoritma, jer se taj trud direktno pretvara u značajno bolji ekonomski rezultat.
 
-\subsection{Kvalitet početne populacije i doprinos procedure popravke}\label{sec:pocetni-kvalitet}
+\subsection{Uticaj početne populacije i procedure popravke rešenja}\label{sec:pocetni-kvalitet}
 
 Pošto i inicijalizacija populacije i slučajna pretraga koriste isti postupak (slučajno rešenje propušteno kroz proceduru popravke), kvalitet najbolje jedinke početne populacije neposredno meri koliki deo konačnog rezultata obezbeđuje sama popravka. Iz krivih kumulativnih maksimuma očitava se sledeće: na maloj instanci najbolja početna jedinka dostiže oko 81\% optimuma (72673 od 89847 dinara za konfiguraciju $(1000, 100)$), na srednjoj svega oko 49\% (995553 od 2023188 dinara), a na velikoj oko 88\% (oko 17,85 od 20,31 miliona dinara). Doprinos evolutivne komponente je, prema tome, oko 18 procentnih poena na maloj, oko 50 na srednjoj i oko 9 na velikoj instanci.
 
@@ -709,9 +718,9 @@ Statistička analiza pokazuje da je raspodela rezultata genetičkog algoritma us
 
 \subsection{Pregled doprinosa}
 
-U ovom radu razmotren je problem maksimizacije zarade pri raspodeli servisa na heterogeni skup računara, formulisan kao varijanta generalizovanog problema dodeljivanja sa celobrojnim odlukama. Pokazano je da problem pripada klasi NP-teških kombinatornih problema, ali da egzaktno rešavanje preko celobrojnog linearnog programiranja u praksi ostaje konkurentan pristup i za velike instance, uz odgovarajuće vreme i memorijske resurse. Rezultati pokazuju da i za problem velike dimenzije alat HiGHS daje bolje vrednosti funkcije cilja od genetičkog algoritma.
+U ovom radu razmotren je problem maksimizacije zarade pri raspodeli servisa na heterogeni skup računara, formulisan kao varijanta generalizovanog problema dodeljivanja sa celobrojnim odlukama. Pokazano je da problem pripada klasi NP-teških kombinatornih problema, ali da rešavanje preko celobrojnog linearnog programiranja u praksi ostaje konkurentan pristup i za velike instance, uz odgovarajuće vreme i memorijske resurse. Rezultati pokazuju da i za problem velike dimenzije alat HiGHS daje bolje vrednosti funkcije cilja od genetičkog algoritma.
 
-Kao odgovor na ograničenja egzaktnog pristupa, implementiran je genetički algoritam sa specijalizovanom procedurom popravke koja integriše pohlepne lokalne heuristike. Algoritam koristi turnirsku selekciju sa elitizmom i injekciju raznolikosti, a realizovan je u programskim jezicima Python i C++. Eksperimenti su sprovedeni na tri reprezentativne veličine instanci sa po više pokretanja po konfiguraciji.
+Kao odgovor na ograničenja ILP pristupa, implementiran je genetički algoritam sa specijalizovanom procedurom popravke koja integriše pohlepne lokalne heuristike. Algoritam koristi turnirsku selekciju sa elitizmom i injekciju raznolikosti, a realizovan je u programskim jezicima Python i C++. Eksperimenti su sprovedeni na tri reprezentativne veličine instanci sa po više pokretanja po konfiguraciji.
 
 Rezultati pokazuju da genetički algoritam dostiže preko 99\% optimuma na maloj instanci, oko 98,8\% na srednjoj i oko 97\% na velikoj instanci, što je znatno bolje od slučajne pretrage sa uporedivim ili čak većim brojem evaluacija: slučajna pretraga dostiže 83,8\% na maloj, svega 49,6\% na srednjoj i 88,0\% na velikoj instanci. Time se potvrđuje da je razvijena metaheuristika praktično primenljiva u scenarijima gde se zahteva fleksibilnost u proširenjima modela. Alat HiGHS je u svim ispitanim veličinama instance dao bolja konačna rešenja u kraćem vremenu, pa metaheuristika predstavlja dopunu, a ne zamenu.
 
@@ -723,14 +732,14 @@ Iako predloženi genetički algoritam efikasno rešava problem, važno je razume
 
 \begin{enumerate}
     \item Kvalitet rešenja zavisi od pažljivog podešavanja hiperparametara. Veličina populacije, broj generacija, stope ukrštanja i mutacije, veličina turnira i broj elitnih hromozoma moraju se prilagoditi konkretnoj veličini instance. Univerzalna konfiguracija ne postoji.
-    \item Genetički algoritam ne garantuje optimalnost. Za problem velike dimenzije ostalo je oko 3\% razlike u odnosu na optimum. U scenarijima gde je optimalnost neophodna, na primer u finansijskim aplikacijama, genetički algoritam ne može biti zamena za egzaktnu metodu.
+    \item Genetički algoritam ne garantuje optimalnost. Za problem velike dimenzije ostalo je oko 3\% razlike u odnosu na optimum. U scenarijima gde je optimalnost neophodna, na primer u finansijskim aplikacijama, genetički algoritam ne može biti zamena za ILP metodu.
     \item Vremenski zahtevi za velike instance i dalje su visoki. Verzija u C++ donosi značajno ubrzanje, ali za problem velike dimenzije jedno pokretanje traje oko 3,4 sata, što može biti prepreka u scenarijima gde su potrebni brzi odgovori.
     \item Predloženi algoritam je dizajniran za statičke instance problema. Dinamičke varijante, u kojima se zahtevi, vremena izvršavanja ili dostupnost računara mogu menjati tokom planiranog perioda, nisu pokrivene ovim radom.
     \item Pretpostavka o nezavisnosti servisa može biti narušena u realnim sistemima sa deljenim resursima.
     \item Model ne uključuje otkaze računara i nepouzdanost hardvera.
     \item Funkcija cilja je jednokriterijumska, dok realne primene često zahtevaju balansiranje više ciljeva (zarade, energetske potrošnje, pravičnosti).
     \item Ne postoji garancija konvergencije u praktičnom vremenskom okviru.
-    \item Eksperimenti su sprovedeni na po jednoj slučajno generisanoj instanci po veličini problema. Višestruka pokretanja obezbeđuju statističku pouzdanost u odnosu na stohastičnost samog algoritma, ali ne i u odnosu na varijabilnost instanci; analiza početnog kvaliteta u odeljku \ref{sec:pocetni-kvalitet} pokazuje da ponašanje algoritma osetno zavisi od strukture instance, pa bi za čvršće uopštavanje zaključaka bilo potrebno više instanci po veličini.
+    \item Eksperimenti su sprovedeni na po jednoj slučajno generisanoj instanci po veličini problema. Višestruka pokretanja obezbeđuju statističku pouzdanost u odnosu na stohastičnost samog algoritma, ali ne i u odnosu na varijabilnost instanci; analiza uticaja početne populacije u odeljku \ref{sec:pocetni-kvalitet} pokazuje da ponašanje algoritma osetno zavisi od strukture instance, pa bi za čvršće uopštavanje zaključaka bilo potrebno više instanci po veličini.
 \end{enumerate}
 
 \subsection{Pravci daljeg rada}
@@ -745,13 +754,13 @@ Treći pravac je korišćenje rešenja relaksiranog linearnog programa kao poče
 
 Četvrti pravac je proširenje modela na dinamičke instance problema, sa inkrementalnim operatorima popravke i ažuriranjem populacije u realnom vremenu.
 
-Peti pravac je primena tehnika mašinskog učenja za predikciju kvalitetnih početnih rešenja. Neuronska mreža bi se obučila nad istorijskim instancama i naučila bi da preslikava ulaze (matrice vremena i zarade, vektor zahteva) u dobre početne raspodele.
+Peti pravac je primena tehnika mašinskog učenja za predikciju kvalitetnih početnih rešenja. Neuralna mreža bi se obučila nad istorijskim instancama i naučila bi da preslikava ulaze (matrice vremena i zarade, vektor zahteva) u dobre početne raspodele.
 
 Šesti pravac je razvoj specijalizovanih ukrštajućih operatora koji uvažavaju strukturu problema, na primer razmena celih kolona (rasporeda po računarima) ili redova (raspored servisa preko računara).
 
 Sedmi pravac je kombinacija sa Lagranžovom relaksacijom, gde bi se dualne informacije iz relaksacije koristile za usmeravanje pretrage.
 
-Osmi pravac je proširenje na više ciljeva istovremeno, kroz formulacije kao što su NSGA-II i SPEA2, čime bi se omogućilo balansiranje zarade sa energetskom potrošnjom, ravnomernom raspodelom opterećenja i poštovanjem rokova.
+Osmi pravac je proširenje na više ciljeva istovremeno, kroz formulacije kao što su NSGA-II (eng. \textit{Non-dominated Sorting Genetic Algorithm II}) i SPEA2 (eng. \textit{Strength Pareto Evolutionary Algorithm 2}), čime bi se omogućilo balansiranje zarade sa energetskom potrošnjom, ravnomernom raspodelom opterećenja i poštovanjem rokova.
 
 Deveti pravac je integracija sa sistemima za podršku odlučivanju i interaktivnim alatima, u kojima donosilac odluke može nametnuti dodatna ograničenja ili preferencije tokom rada algoritma.
 
@@ -759,7 +768,7 @@ Deseti pravac je sistematska evaluacija na većem broju slučajno generisanih in
 
 \subsection{Praktične preporuke}
 
-Na osnovu sprovedenih eksperimenata, mogu se formulisati sledeće praktične preporuke. Za probleme male i srednje dimenzije, sa do nekoliko hiljada promenljivih, preporučuje se direktna upotreba alata HiGHS, koji garantuje optimalnost u prihvatljivom vremenu. Za probleme velike dimenzije, sa milionima promenljivih, HiGHS je na ispitanoj instanci postigao najbolji rezultat i u najkraćem vremenu, pa genetički algoritam u C++ implementaciji postaje praktičan izbor tek kada memorijski zahtevi punog ILP modela premaše raspoloživi hardver, ili kada proširenja modela (nelinearnosti, dinamičke promene ulaza) nije moguće izraziti u ILP formulaciji.
+Na osnovu sprovedenih eksperimenata, mogu se formulisati sledeće praktične preporuke. Za probleme male i srednje dimenzije, sa do nekoliko hiljada promenljivih, preporučuje se direktna upotreba alata HiGHS, koji je specijalizovan za ovu vrstu problema i u sprovedenim eksperimentima pronalazi optimum u prihvatljivom vremenu. Za probleme velike dimenzije, sa milionima promenljivih, HiGHS je na ispitanoj instanci postigao najbolji rezultat i u najkraćem vremenu, pa genetički algoritam u C++ implementaciji postaje praktičan izbor tek kada memorijski zahtevi punog ILP modela premaše raspoloživi hardver, ili kada proširenja modela (nelinearnosti, dinamičke promene ulaza) nije moguće izraziti u ILP formulaciji.
 
 Pored izbora algoritma, važno je obratiti pažnju na podešavanje hiperparametara. Verovatnoća ukrštanja 0,8 i verovatnoća mutacije 0,15 pokazale su se robusnim na svim ispitanim veličinama. Ostale vrednosti treba skalirati sa instancom: za male instance dovoljna je populacija oko 1000 sa oko 1000 generacija, turnirom oko 5 i elitizmom oko 3\% populacije; za velike instance preporučuju se populacije od desetina hiljada jedinki uz stotinak generacija, turnir od 15 do 20 i elitizam ispod 5\% populacije, pri čemu je pri ograničenom broju evaluacija po pravilu isplativije smanjiti populaciju u korist broja generacija. Manje izmene ovih vrednosti unutar uobičajenih raspona ne menjaju značajno kvalitet rešenja, što ukazuje na robusnost predloženog pristupa.
 

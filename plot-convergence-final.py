@@ -46,10 +46,11 @@ def plot_with_mean(csv_path, out_prefix):
             plt.plot(xs, ys, linewidth=0.9, alpha=0.55, color="#9bb4c8",
                      label=f"Pojedinačna pokretanja ({len(runs)})" if first else None)
             first = False
-        plt.plot(xs_mean, ys_mean, linewidth=2.0, color="#1f3d5c", label="Srednja kriva")
+        plt.plot(xs_mean, ys_mean, linewidth=2.0, color="#1f3d5c", label="Srednji kumulativni maksimum")
         if use_log:
             plt.xscale("log")
             plt.yscale("log")
+        plt.grid(True, which="both", alpha=0.3)
         plt.xlabel("Broj evaluacija")
         plt.ylabel("Zarada")
         plt.legend(loc="lower right")
@@ -65,6 +66,7 @@ def plot_runs_png(csv_path, out_name):
     plt.figure(figsize=(10, 5))
     for run_id, (xs, ys) in runs.items():
         plt.plot(xs, ys, linewidth=1.2, alpha=0.85, label=f"Pokretanje {run_id}")
+    plt.grid(True, which="both", alpha=0.3)
     plt.xlabel("Broj evaluacija")
     plt.ylabel("Zarada")
     plt.legend(loc="lower right")
