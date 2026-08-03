@@ -6,23 +6,39 @@ Drugi deo prezentacije treba da predstavi glavne rezultate kao povezanu priču: 
 
 ## Obim
 
-- Prezentacija se proširuje sa 12 na 14 slajdova.
-- Prvih sedam slajdova ostaje sadržajno nepromenjeno.
-- Drugi deo se reorganizuje, uz dva nova slajda o performansama GA.
-- Numeracija se ažurira na `1/14`–`14/14`.
+- Prezentacija zadržava ukupno 12 slajdova.
+- Uvodni deo se sažima na pet slajdova spajanjem srodnog sadržaja i uklanjanjem ponavljanja.
+- Drugi deo se reorganizuje u sedam slajdova, uz dva slajda posvećena performansama GA.
+- Numeracija ostaje `1/12`–`12/12`.
 - Ciljano trajanje ostaje približno 10–11 minuta; novi slajdovi se izlažu sažeto, po oko 40–50 sekundi.
 
-## Narativ slajdova 7–14
+## Konačna struktura od 12 slajdova
 
-### 7. Eksperimentalna postavka
+### 1. Naslovni slajd
 
-Uvesti tri veličine problema, referentni rezultat HiGHS-a, slučajnu pretragu, više pokretanja i isti hardver.
+Zadržati naslov rada, podatke o kandidatu, mentorima, fakultetu i datumu.
 
-### 8. Kvalitet GA u odnosu na HiGHS
+### 2. Problem i matematički model
+
+Spojiti sadašnje slajdove o heterogenim računarima i ILP formulaciji. Leva strana uvodi problem i motivaciju, a desna prikazuje funkciju cilja i dva glavna skupa ograničenja. Izostaviti detalje koji se mogu izgovoriti bez prikazivanja.
+
+### 3. Cilj rada i struktura genetičkog algoritma
+
+Spojiti doprinose rada i evolutivnu petlju. Prikazati tri sažeta doprinosa uz tok: inicijalizacija → selekcija i elitizam → ukrštanje i mutacija → popravka → nova generacija.
+
+### 4. Procedura popravke
+
+Zadržati je kao poseban slajd jer predstavlja centralni algoritamski doprinos. Prikazati četiri faze i naglasiti da procedura obezbeđuje dopustivost i lokalno poboljšava rešenje.
+
+### 5. Eksperimentalna postavka
+
+Prikazati tri veličine problema, referentni rezultat HiGHS-a, slučajnu pretragu, više pokretanja i isti hardver. Ovaj slajd predstavlja prelaz iz metodologije u rezultate.
+
+### 6. Kvalitet GA u odnosu na HiGHS
 
 Prikazati da GA dostiže približno 97–99% referentnog rezultata, ali da je HiGHS brži i bolji na ispitanim linearnim instancama. Y-osa mora biti jasno označena kao procenat referentnog optimuma.
 
-### 9. Doprinos evolutivnih operatora
+### 7. Doprinos evolutivnih operatora
 
 Porediti GA i slučajnu pretragu. Za instancu 100×100 koristiti metodološki čisto poređenje sa istih 10 miliona evaluacija:
 
@@ -31,7 +47,7 @@ Porediti GA i slučajnu pretragu. Za instancu 100×100 koristiti metodološki č
 
 Na slajdu eksplicitno navesti da obe metode koriste istu proceduru popravke i isti broj evaluacija za prikazano poređenje 100×100.
 
-### 10. Uticaj veličine populacije pri istom broju evaluacija
+### 8. Uticaj veličine populacije pri istom broju evaluacija
 
 Koristiti grafikon `rad/slike/compare-10x10-pop.pdf`, koji poredi `P=1000, G=1000` i `P=2000, G=500` pri milion evaluacija.
 
@@ -41,7 +57,7 @@ Poruke:
 - veća populacija održava veću raznovrsnost i dostiže nešto bolji konačni rezultat;
 - pri fiksnom budžetu postoji kompromis između broja jedinki i broja evolutivnih ciklusa.
 
-### 11. Opadajući prinos povećanja populacije
+### 9. Opadajući prinos povećanja populacije
 
 Prikazati rezultate za 100×100 kombinovanim grafikonom:
 
@@ -55,7 +71,7 @@ Poruke:
 - dobitak se postepeno smanjuje;
 - prelazak sa 100.000 na 200.000 jedinki daje približno 0,15 procentnih poena u proseku, uz oko 3,5 puta duže izvršavanje.
 
-### 12. Gde GA ima smisla
+### 10. Gde GA ima smisla
 
 Iz prethodnih rezultata izvesti preporuku:
 
@@ -65,7 +81,7 @@ Iz prethodnih rezultata izvesti preporuku:
 
 Ispod grafikona zadržati dva kratka zaključka u bullet formi.
 
-### 13. Sinteza performansi
+### 11. Sinteza performansi
 
 Sažeti tri odgovora:
 
@@ -75,7 +91,7 @@ Sažeti tri odgovora:
 
 Ovaj slajd služi kao prelaz ka završnom zaključku, bez ponavljanja svih brojki.
 
-### 14. Zaključak
+### 12. Zaključak
 
 Zadržati tri jasne poruke u ujednačenim karticama:
 
@@ -96,4 +112,4 @@ Zadržati tri jasne poruke u ujednačenim karticama:
 - Sve vrednosti se preuzimaju iz sirovih rezultata u direktorijumima `rezultati-*` i proveravaju prema optimumima u radu.
 - Na svakom poređenju mora biti naveden broj evaluacija ili jasno naznačeno da budžeti nisu isti.
 - Završni PPTX se renderuje i vizuelno proverava slajd po slajd.
-- Posebno proveriti čitljivost osa, legendi, oznaka populacije, vremena i numeracije `x/14`.
+- Posebno proveriti čitljivost osa, legendi, oznaka populacije, vremena i numeracije `x/12`.
