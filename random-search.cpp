@@ -22,10 +22,10 @@
 namespace fs = std::filesystem;
 
 // ── Parameters ───────────────────────────────────────────────────────────────
-static const std::string PROBLEM_SIZE = "1000x1000";
-static const long long EVALUATIONS = 2000000; // total random solutions per run
-static const int SAMPLE_INTERVAL = 20000;     // record best-so-far every N evaluations
-static const int NUM_RUNS = 1;
+static const std::string PROBLEM_SIZE = "100x100";
+static const long long EVALUATIONS = 500000; // total random solutions per run
+static const int SAMPLE_INTERVAL = 10000;    // record best-so-far every N evaluations
+static const int NUM_RUNS = 5;
 static const int MAX_TIME = 2880;
 
 // ── Globals (problem data) ───────────────────────────────────────────────────
