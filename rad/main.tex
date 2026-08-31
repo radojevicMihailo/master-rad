@@ -133,7 +133,7 @@ Celobrojno linearno programiranje je grana matematičkog programiranja koja se b
 
 Među dostupnim open-source alatima, HiGHS \cite{HuangfuHall2018, HiGHS} se izdvaja kao jedan od najefikasnijih za probleme mešovitog celobrojnog linearnog programiranja. HiGHS implementira napredne tehnike pretprocesiranja, sečenje ravni (eng. \textit{cutting planes}) i heuristike za pronalaženje dopustivih rešenja. Njegova prednost je dostupnost preko otvorenih licenci, što omogućava akademsku i industrijsku upotrebu bez restrikcija. U ovom radu HiGHS je korišćen kao primarni alat za matematičku optimizaciju za sve tri veličine instanci.
 
-Pored HiGHS-a, postoje i komercijalni alati, među kojima se ističu Gurobi \cite{Gurobi2024}, CPLEX i Mosek. Ovi alati često postižu bolja vremena izvršavanja za izuzetno velike instance, ali zahtevaju plaćene licence. U ovom radu Gurobi je korišćen preko NEOS servera radi potvrde referentnih vrednosti dobijenih HiGHS-om. Razlika između rezultata HiGHS-a i Gurobija je u svim ispitanim instancama bila zanemarljiva, što potvrđuje pouzdanost izabranog open-source alata.
+Pored HiGHS-a, postoje i komercijalni alati, među kojima se ističu Gurobi \cite{Gurobi2024}, CPLEX i Mosek. Ovi alati često postižu bolja vremena izvršavanja za izuzetno velike instance, ali zahtevaju plaćene licence. U ovom radu Gurobi je korišćen preko NEOS servera radi potvrde referentnih vrednosti dobijenih HiGHS-om na instancama male i srednje dimenzije. Model velike dimenzije, sa milion promenljivih, nije mogao da se reši tim putem, pa za tu instancu nezavisna potvrda nije dobijena. Na instancama na kojima je potvrda dobijena razlika između rezultata HiGHS-a i Gurobija bila je zanemarljiva, što potvrđuje pouzdanost izabranog open-source alata.
 
 Model ILP-a u ovom radu implementiran je u programskom jeziku Python uz pomoć biblioteke PuLP \cite{PuLP2011}, koja služi kao apstrakcioni sloj iznad različitih alata za optimizaciju. Gornje granice celobrojnih promenljivih unapred su sužene na $\min(d_i, \lfloor T/t_{ij} \rfloor)$, čime se značajno smanjuje veličina linearne relaksacije i ubrzava postupak grananja i ograničavanja.
 
@@ -534,7 +534,7 @@ Problem velike dimenzije, sa 1000 servisa i 1000 računara, predstavlja granicu 
 
 \subsubsection{Rešenje alatom HiGHS}
 
-Pri zadatom vremenskom limitu od 150 sekundi, HiGHS vraća rešenje sa vrednošću 20307561 dinara. Pri uklanjanju vremenskog limita, alat u oko 185 sekundi dokazuje da je upravo ta vrednost optimalna. Gurobi preko NEOS servera potvrđuje istu vrednost u kraćem vremenu, oko 90 sekundi.
+Pri zadatom vremenskom limitu od 150 sekundi, HiGHS vraća rešenje sa vrednošću 20307561 dinara. Pri uklanjanju vremenskog limita, alat u oko 185 sekundi dokazuje da je upravo ta vrednost optimalna. Za razliku od manjih instanci, model sa milion promenljivih nije mogao da se reši preko NEOS servera, pa nezavisna potvrda referentne vrednosti za ovu instancu nije dobijena.
 
 \subsubsection{Rešenje genetičkim algoritmom}
 
